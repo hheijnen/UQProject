@@ -18,6 +18,7 @@
 
 \section{Model description}
 \subsection{The SIR model}
+\paragraph{}
 The Susceptible-Infected-Recovered (SIR) model is a deterministic model that can be used to describe the influenza transmission. We consider the version proposed by Coehlo et al. [2].
 
 \begin{equation}
@@ -34,7 +35,17 @@ with \[ \lambda = \beta (\alpha I + m) \]
 
 where $S$ is the normalized number of susceptible individuals, $I$is the normalized number of infected individuals, $R$ is the normalized number of recovered individuals, $\tau $ is the recovery rate, $\beta $ is the transmission rate, $\alpha$ is the ratio of symptomatic infection and m is the infectious migration rate.
 
+The expression of the effective reproduction number (at the beginning of each season) is 
+\begin{equation}
+R_e = \frac{\beta \alpha}{\tau} S_o
+\end{equation}
+
+where $S_o$ is the number of the susceptible individuals at the beginning of each new period.
+
+The set of parameters to be determined in this case is : $ { \alpha, m, R_e, S_o, \tau }$. The following parameters $m, R_e, \tau$ do not depend on the season considered, whereas the parameters $\alpha$ and $S_o$ change at each season.
+
 \subsection{The SEIR model}
+\paragraph{}
 The Susceptible-Exposed-Infected-Recovered (SEIR) model is an extension of the SIR model. We added the Exposed category to the previous system.
 
 \begin{equation}
@@ -54,19 +65,36 @@ with \[ \lambda = \beta (\alpha I + m) \]
 
 where $E$ is the normalized number of exposed individuals and $\gamma$ is the transition rate from latent to infected state.
 
+The set of parameters to be determined in this model is : $ { \alpha, \gamma, m, R_e, S_o, \tau }$. Here, we suppose that $\gamma$ is constant for all the seasons.
+
 \section{Likelihood}
-Likelihood
+\paragraph{}
+The likelihood of the parameters is 
 \begin{equation}
-L =  p(D|\theta, I) = \prod_{i=1}^N p(y_k | \Theta,I) = 
+L(\Theta) =  p(D|\Theta, I) = \prod_{k=1}^N p(y_k | \Theta,I) = 
 \end{equation}
 
 assuming gaussian errors
 \begin{equation}
-p(y_k | \Theta,I) = \frac{1}{\sqrt{2\pi}\sigma} \exp{-\frac{1}{2\sigma^2}[y_k - F(x_k)]}
+p(y_k | \Theta,I) = \frac{1}{\sqrt{2\pi}\sigma} \exp{-\frac{1}{2\sigma^2}[y_k - F(t_k)]}
 \end{equation}
 
-where $F(x_k) $is the number of infected people at time $x_k$ predicted by the model and $y_k$ is the observed data
+where $F(x_k) $is the number of infected people at time $t_k$ predicted by the model and $y_k$ is the observed data.
 
+As
+
+\section{Priors}
+\paragraph{}
+Thanks to the article by Coehlo et al. [2], it is possible to use informative priors for the SIR model. However, the $\gamma$ parameter has an uninformative prior (a uniform distribution between 0 and 1). Moreover, the prior over \tau is considered 
+
+Here are the priors used for each parameter : 
+\begin{itemize}
+\item $\alpha \sim \mathcal{U}(0, 0.4)$ 
+\item $\gamma \sim \mathcal{U}(0, 1)$
+\item $m \sim  \mathcal{U}(0, 4e-6)$
+\item $R_e \sim \mathcal{U}(1, 1.4)$
+\item $ \tau \sim \mathcal{U}(1, 2)$
+\end{itemize}
 
 
 
