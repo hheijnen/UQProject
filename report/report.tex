@@ -35,14 +35,11 @@ with \[ \lambda = \beta (\alpha I + m) \]
 
 where $S$ is the normalized number of susceptible individuals, $I$is the normalized number of infected individuals, $R$ is the normalized number of recovered individuals, $\tau $ is the recovery rate, $\beta $ is the transmission rate, $\alpha$ is the ratio of symptomatic infection and m is the infectious migration rate.
 
-The expression of the effective reproduction number (at the beginning of each season) is 
-\begin{equation}
-R_e = \frac{\beta \alpha}{\tau} S_o
-\end{equation}
+$\beta$ is time-dependent and models the seasonality of the flu epidemics. Here, a sufficiently large step function is chosen (Figure ...).
 
-where $S_o$ is the number of the susceptible individuals at the beginning of each new period.
+%% ADD A FIGURE OF THE STEP FUNCTION USED
 
-The set of parameters to be determined in this case is : $ { \alpha, m, R_e, S_o, \tau }$. The following parameters $m, R_e, \tau$ do not depend on the season considered, whereas the parameters $\alpha$ and $S_o$ change at each season.
+The set of parameters to be determined in this case is : $ { \alpha, \tau, m, S_o}$. $S_o$ is the number of susceptible individuals at the beginning at each season. The following parameters $m, \tau$ do not depend on the season considered, whereas the parameters $\alpha$ and $S_o$ change at each season.
 
 \subsection{The SEIR model}
 \paragraph{}
@@ -65,13 +62,13 @@ with \[ \lambda = \beta (\alpha I + m) \]
 
 where $E$ is the normalized number of exposed individuals and $\gamma$ is the transition rate from latent to infected state.
 
-The set of parameters to be determined in this model is : $ { \alpha, \gamma, m, R_e, S_o, \tau }$. Here, we suppose that $\gamma$ is constant for all the seasons.
+The set of parameters to be determined in this model is : $ { \alpha, \gamma, \tau, m, S_o}$. Here, we suppose that $\gamma$ is constant for all the seasons.
 
 \section{Likelihood}
 \paragraph{}
 The likelihood of the parameters is 
 \begin{equation}
-L(\Theta) =  p(D|\Theta, I) = \prod_{k=1}^N p(y_k | \Theta,I) = 
+L(\Theta) = L(\Phi) = \prod_{k=1}^K \prod_{t= p( | \Theta,I) = 
 \end{equation}
 
 assuming gaussian errors
@@ -91,10 +88,9 @@ Here are the priors used for each parameter :
 \begin{itemize}
 \item $\alpha \sim \mathcal{U}(0, 0.4)$ 
 \item $\gamma \sim \mathcal{U}(0, 1)$
+\item $\tau \sim \mathcal{U}(1, 2)$
 \item $m \sim  \mathcal{U}(0, 4e-6)$
-\item $R_e \sim \mathcal{U}(1, 1.4)$
 \item $S_o \sim \mathcal{U}(0, 1)$
-\item $ \tau \sim \mathcal{U}(1, 2)$
 \end{itemize}
 
 
