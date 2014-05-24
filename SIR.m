@@ -4,13 +4,22 @@ alpha    = theta(1);
 tau      = theta(2);
 m        = theta(3);
 
+% B0       = theta(5);
+% B1       = theta(6);
+% B2       = theta(7);
+
 S = y(1);
 I = y(2);
 R = y(3);
-%tt = y(4);  % whats this?
 
 %beta should depend on time: almost zero in summer, big enough in winter...
-beta = -4.5*cos(pi/26)+5.5;
+% beta = B2*normpdf(t,B0,B1);
+% if (t > 9) && (t < 47)
+    beta = 100;
+% else
+%     beta = 0.1;
+% end
+
 %% New
 lambda = beta*(alpha*I + m);
 dS = -lambda*S;

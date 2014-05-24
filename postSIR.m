@@ -1,4 +1,6 @@
 function postSIR(data)
+clear model params options
+close all
 
 %% Model
 
@@ -15,12 +17,16 @@ model.ssfun = @SIRss;
 %      ... }
 parameters = {
     {'alpha',   0.2,    0, 0.4      }
-    {'tau',     1.5,    1, 2        }
+    {'tau',     0.1,    0, 2        }
     {'m',       0.2e-6, 0, 0.4e-6   }
-    {'S0',      0.5,    0, 1        }
+    {'S0',      0.4,    0, 1        }
+%     {'B0',       26,    1, 52       }
+%     {'B1',       20,    0, 26       }
+%     {'B2',        1,    0, 1        }
     };
 %% Run
 %
+
 % burn 2000
 options.nsimu = 2000;
 [results, chain, s2chain]= mcmcrun(model,data,parameters,options);
