@@ -1,0 +1,34 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage{color}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[pdftex]{graphicx}
+\usepackage{alltt}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{epstopdf}
+
+
+\author{...}
+\title{Ejpidemic models of Flu outbreaks}
+\begin{document}
+\maketitle
+\section{1}
+Likelihood
+\begin{equation}
+L =  p(D|\theta, I) = \prod_{i=1}^N p(y_k | \Theta,I) = 
+\end{equation}
+
+assuming gaussian errors
+\begin{equation}
+p(y_k | \Theta,I) = \frac{1}{\sqrt{2\pi}\sigma} \exp{-\frac{1}{2\sigma^2}[y_k - F(x_k)]}
+\end{equation}
+
+where $F(x_k) $is the number of infected people at time $x_k$ predicted by the model and $y_k$ is the observed data
+
+
+
+
+\end{document}
