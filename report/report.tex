@@ -12,10 +12,49 @@
 
 
 \author{...}
-\title{Ejpidemic models of Flu outbreaks}
+\title{Epidemic models of Flu outbreaks}
 \begin{document}
 \maketitle
-\section{1}
+
+\section{Model description}
+\subsection{The SIR model}
+The Susceptible-Infected-Recovered (SIR) model is a deterministic model that can be used to describe the influenza transmission. We consider the version proposed by Coehlo et al. [2].
+
+\begin{equation}
+\frac{dS}{dt} = - \lambda S
+\end{equation}
+\begin{equation}
+\frac{dI}{dt} = \lambda S - \tau R
+\end{equation}
+\begin{equation}
+\frac{dR}{dt} = \tau R
+\end{equation}
+
+with \[ \lambda = \beta (\alpha I + m) \]
+
+where $S$ is the normalized number of susceptible individuals, $I$is the normalized number of infected individuals, $R$ is the normalized number of recovered individuals, $\tau $ is the recovery rate, $\beta $ is the transmission rate, $\alpha$ is the ratio of symptomatic infection and m is the infectious migration rate.
+
+\subsection{The SEIR model}
+The Susceptible-Exposed-Infected-Recovered (SEIR) model is an extension of the SIR model. We added the Exposed category to the previous system.
+
+\begin{equation}
+\frac{dS}{dt} = - \lambda S
+\end{equation}
+\begin{equation}
+\frac{dE}{dt} = \lambda S - \gamma E
+\end{equation}
+\begin{equation}
+\frac{dI}{dt} = \gamma E - \tau R
+\end{equation}
+\begin{equation}
+\frac{dR}{dt} = \tau R
+\end{equation}
+
+with \[ \lambda = \beta (\alpha I + m) \]
+
+where $E$ is the normalized number of exposed individuals and $\gamma$ is the transition rate from latent to infected state.
+
+\section{Likelihood}
 Likelihood
 \begin{equation}
 L =  p(D|\theta, I) = \prod_{i=1}^N p(y_k | \Theta,I) = 
