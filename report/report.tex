@@ -85,7 +85,7 @@ As
 
 \section{Priors}
 \paragraph{}
-Thanks to the article by Coehlo et al. [2], it is possible to use informative priors for the SIR model. However, the $\gamma$ parameter has an uninformative prior (a uniform distribution between 0 and 1). Moreover, the prior over \tau is considered 
+Thanks to the article by Coehlo et al. [2], it is possible to use informative priors for the SIR model. The analogies between the SIR model and the SEIR model  However, the $\gamma$ parameter has an uninformative prior (a uniform distribution between 0 and 1). Moreover, the prior over $\tau$ is considered to be uniform between 1 and 2, as the 
 
 Here are the priors used for each parameter : 
 \begin{itemize}
@@ -93,6 +93,7 @@ Here are the priors used for each parameter :
 \item $\gamma \sim \mathcal{U}(0, 1)$
 \item $m \sim  \mathcal{U}(0, 4e-6)$
 \item $R_e \sim \mathcal{U}(1, 1.4)$
+\item $S_o \sim \mathcal{U}(0, 1)$
 \item $ \tau \sim \mathcal{U}(1, 2)$
 \end{itemize}
 
