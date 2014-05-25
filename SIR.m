@@ -3,6 +3,7 @@ function dy = sir(t, y,theta)
 alpha    = theta(1);
 tau      = theta(2);
 m        = theta(3);
+% thres     = theta(5);
 
 % B0       = theta(5);
 % B1       = theta(6);
@@ -14,10 +15,10 @@ R = y(3);
 
 %beta should depend on time: almost zero in summer, big enough in winter...
 % beta = B2*normpdf(t,B0,B1);
-% if (t > 9) && (t < 47)
-    beta = 100;
+% if (t > thres) 
+    beta = 50;
 % else
-%     beta = 0.1;
+%     beta = 1;
 % end
 
 %% New
