@@ -25,17 +25,12 @@ tau_opt = parF(2)
 m_opt = parF(3)
 S0_opt = parF(4)
 
-% Likelihood function
+options = optimset('TolFun', 1e-6);
+options = optimset('TolX', 1e-6);
+[parF2,fval2,exitflag,output,grad,hessian] = fminunc(@(par) diff_sqr(par), parF);
+% [hess, err] = hessian(@(par) diff_sqr(par), parF);
 
-% diff_sqr = sum((I - seasonaldata(:,1)).^2);
-% N = length(seasonaldata);
-% sigma = sqrt(1/(N-1) * diff_sqr);
-% Li = @(alpha, tau, m, beta) 1/(sqrt(2*pi)^N*sigma^N) * exp(-1/(2*sigma^2) * diff_sqr);
-
-% (-1)*log posterior
-
-% prior = 1; % set it equal to 1, doesnt play a role for the calculation of the Hessian
-% L = -log(Li*prior);
+hessian
 
 
 
