@@ -3,27 +3,28 @@
 clear all;
 close all;
 
-load('seasonaldata');
+load('seasonaldata.mat');
 
 % optimal value
 alpha = 0.1523;
 tau = 1.7357;
+gamma = 0.5;
 m = 2.7*1e-6;
 S0 = 0.2743;
+E0 = 0.05;
 beta = 50;
 
 theta(1) = alpha;
 theta(2) = tau;
-theta(3) = m;
-theta(4) = S0;
+theta(3) = gamma;
+theta(4) = m;
+theta(5) = S0;
+theta(6) = E0;
 par0 = theta;
 
-[parF,fval] = fminsearch(@(par) diff_sqr(par),par0);
+[parF,fval] = fminsearch(@(par) diff_sqr_SEIR(par),par0);
 
-alpha_opt = parF(1)
-tau_opt = parF(2)
-m_opt = parF(3)
-S0_opt = parF(4)
+theta_opt = parF
 
 options = optimset('TolFun', 1e-6);
 options = optimset('TolX', 1e-6);

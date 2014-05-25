@@ -1,4 +1,4 @@
-function dy = sir(t, y,theta)
+function dy = SEIR(t, y,theta)
 
 alpha    = theta(1);
 tau      = theta(2);
