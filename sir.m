@@ -1,37 +1,28 @@
-function dy = sir(t, y, par)
+function dy = sir(t, y,theta)
 
-%% Old, needs checking
-alpha    = par(1);
-tau      = par(2);
-m        = par(3);
-S0       = par(4);
+alpha    = theta(1);
+tau      = theta(2);
+m        = theta(3);
+% thres     = theta(5);
 
-
-beta0 = 1e6;
-beta1 = 1e7;
+% B0       = theta(5);
+% B1       = theta(6);
+% B2       = theta(7);
 
 S = y(1);
 I = y(2);
 R = y(3);
-% tt = y(4);  % whats this?
-
-%beta_SEIR depends on time! it is periodic and has to do with the contact
-%rate!
-beta_SIR = @(beta0,beta1,t) beta0*(1+beta1*cos(2*pi*t));
 
 %beta should depend on time: almost zero in summer, big enough in winter...
-% if (t <= 8 || t > 48)
-% if (t <= 8 || t > 48)
-%     beta_SIR = 1;
+% beta = B2*normpdf(t,B0,B1);
+% if (t > thres) 
+    beta = 50;
 % else
-%     beta_SIR = 1+beta;
+%     beta = 1;
 % end
 
-% beta_SIR = @(t,beta0) beta0*cos(2*pi*t);
-
 %% New
-lambda = beta_SIR(t,beta0,beta1)*(alpha*I + m);
-
+lambda = beta*(alpha*I + m);
 dS = -lambda*S;
 dI = lambda*S - tau*I;
 dR = tau*I;
