@@ -12,7 +12,7 @@ ode = @(t, y) sir(t, y, par);
 I0 = mean(seasonaldata(1:3,1));
 R0 = 1-S0-I0;
 xinit=[S0 I0 R0];
-for i=1:30
+for i=1:17
     tspan(i) = i;
 end
 [T,Y]=ode15s(ode,tspan,xinit);
@@ -20,9 +20,9 @@ end
 I = Y(:,2);
 difference_sqr = sum((I-seasonaldata(:,1)).^2);
 
-plot(I)
-hold on
-plot(seasonaldata(:,1),'r')
+%plot(I)
+%hold on
+%plot(seasonaldata(:,1),'r')
 
 end
 
