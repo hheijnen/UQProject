@@ -1,4 +1,4 @@
-function postSEIR(data)
+function postSEIR(data,prior,burnsamples,runsamples)
  clear model parameters options results chain s2chain ssmat thetamat
 close all
 
@@ -31,53 +31,21 @@ model.ssfun = @SEIRss;
 %
 
 %  for(i = 1:100)
-options.nsimu = 100;
-%%
-% Then re-run starting from the results of the previous run.
-% load debugdata.mat
-% 
-% parameters = {
-%     {'alpha',   rand*0.4,    0, 0.4      }
-%     {'tau',     rand*2,    0, 2       }
-%     {'gamma',   rand,    0,   1    }
-%     {'m',       rand*4e-06, 0,   6e-6    }
-%     {'S0',      0.8*rand,    0, 1       }
-%     {'E0',      0.1*rand,    0, 1       }
-% };
+options.nsimu = burnsamples;
+
 
 parameters = {
-    {'alpha',   0.4,    0, 0.7      }
-    {'tau',     4.34,    0, 5       }
-    {'gamma',   1,    0,   2   }
-    {'m',       8e-06, 0,   1e-5    }
-    {'S0',      0.343,    0, 1       }
-    {'E0',      0.0056,    0, 1       }
+    {'alpha',   prior(1),    0,   0.7     }
+    {'tau',     prior(2),    0,   5       }
+    {'gamma',   prior(3),    0,   2       }
+    {'m',       prior(4),    0,   1e-4    }
+    {'S0',      prior(5),    0,   .9       }
+    {'E0',      prior(6),    0,   .9       }
 };
   
 [results, chain, s2chain]= mcmcrun(model,data,parameters,options);
 
-
-% options.nsimu = 2000;
-% 
-% load debugdata.mat
-% 
-% ssmat(ssmat < 0 ) = 100;
-% 
-% alphai =    thetamat(1,min(find(min(ssmat) == ssmat)))
-% taui =      thetamat(2,min(find(min(ssmat) == ssmat)))
-% gammai =    thetamat(3,min(find(min(ssmat) == ssmat)))
-% mi =        thetamat(4,min(find(min(ssmat) == ssmat)))
-% S0i =       thetamat(5,min(find(min(ssmat) == ssmat)))
-% E0i =       thetamat(6,min(find(min(ssmat) == ssmat)))
-% 
-% parameters = {
-%     {'alpha',   alphai,    0, 0.4      }
-%     {'tau',     taui,    0, 2       }
-%     {'gamma',   gammai,    0,   1    }
-%     {'m',       mi, 0,   4e-6    }
-%     {'S0',      S0i,    0, 1       }
-%     {'E0',      E0i,    0, 1       }
-% };
+options.nsimu = runsamples;
 
 [results, chain, s2chain] = mcmcrun(model,data,parameters,options,results);
 
