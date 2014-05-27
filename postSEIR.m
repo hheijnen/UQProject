@@ -1,6 +1,4 @@
-function postSEIR(data,prior,burnsamples,runsamples)
- clear model parameters options results chain s2chain ssmat thetamat
-close all
+function postSEIR(data,parameters,burnsamples,runsamples)
 
 %% Model
 
@@ -34,14 +32,7 @@ model.ssfun = @SEIRss;
 options.nsimu = burnsamples;
 
 
-parameters = {
-    {'alpha',   prior(1),    0,   0.7     }
-    {'tau',     prior(2),    0,   5       }
-    {'gamma',   prior(3),    0,   2       }
-    {'m',       prior(4),    0,   1e-4    }
-    {'S0',      prior(5),    0,   .9       }
-    {'E0',      prior(6),    0,   .9       }
-};
+
   
 [results, chain, s2chain]= mcmcrun(model,data,parameters,options);
 
