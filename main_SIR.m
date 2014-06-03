@@ -51,6 +51,9 @@ parameters = {
 figure
 mcmcplot(chain,[],result,'denspanel',2)
 
+%% Find the modes
+findmodesSIR
+
 %% mean and std of the params
 chainstats(chain,result);
 
