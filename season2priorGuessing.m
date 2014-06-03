@@ -25,13 +25,13 @@ while amidone
     prior2(6) = E0;
     
     try
-        [parF,fval] = fminsearch(@(par) diff_sqr_SEIR(par,data),prior2);
+        [parF2,fval] = fminsearch(@(par) diff_sqr_SEIR(par,data),prior2);
     catch
-        parF = [-1 0 0 0 0 0];
+        parF2 = [-1 0 0 0 0 0];
     end
     
-    if (sum(parF > 0) == 6)
-        save prior.mat parF prior2
+    if (sum(parF2 > 0) == 6)
+        save prior.mat parF2 prior2
         amidone = 0;
     end
 end
