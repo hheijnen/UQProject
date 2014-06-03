@@ -6,7 +6,7 @@ clear all
 load seasonaldata.mat;
 load prior.mat;
 
-seasonindex = 3;
+seasonindex = 1;
 
 switch seasonindex
     case 1
@@ -41,12 +41,12 @@ switch seasonindex
         data = season2;
         
         parameters = {
-            {'alpha',   parF(1),    0,          }
-            {'tau',     parF(2),    0,          }
-            {'gamma',   parF(3),    0,          }
-            {'m',       parF(4),    0,          }
-            {'S0',      parF(5),    0,          }
-            {'E0',      parF(6),    0,          }
+            {'alpha',   parF2(1),    0,          }
+            {'tau',     parF2(2),    0,          }
+            {'gamma',   parF2(3),    0,          }
+            {'m',       parF2(4),    0,          }
+            {'S0',      parF2(5),    0,          }
+            {'E0',      parF2(6),    0,          }
             };
         
     case 3
@@ -80,8 +80,8 @@ switch seasonindex
 end
 
 
-burnsamples = 2000;
-runsamples = 2000;
+burnsamples = 500;
+runsamples = 500;
 
 
 %% Sampling
@@ -91,6 +91,10 @@ runsamples = 2000;
 %% Plot the posterior
 figure
 mcmcplot(chain,[],result,'denspanel',2)
+
+%% Calculate the modes
+
+findmodesSEIR
 
 %% mean and std of the params
 chainstats(chain,result);
@@ -109,6 +113,7 @@ I0 = data(1);
 R0 = 1-S0-E0-I0;
 y00 = [S0 E0 I0 R0];
 
+figure
 YModelOpt = SEIRfun(time,optpars,y00);
 YModelMean = SEIRfun(time,mean(chain),y00);
 plot(time,[YModelOpt(:,3),data]);
@@ -157,6 +162,7 @@ Q05 = quantile(II,0.025);
 
 
 %% plot the stuff
+figure
 XX= [time,fliplr(time)]';
 YY = [Q05,fliplr(Q95)];
 h = fill(XX,YY,[0.9 0.9 0.9]);

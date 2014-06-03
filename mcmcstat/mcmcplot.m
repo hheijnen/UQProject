@@ -89,6 +89,11 @@ switch plottype
     h=subplot(ns1,ns2,i);
     [y,x]=density(chain(:,inds(i)),[],varargin{:});
     plot(x,y,'-k')
+    
+    yplot(:,i) = y';
+    xplot(:,i) = x';
+    save chaintest.mat xplot yplot
+    
     set(h,'ytick',[]);
     title(sprintf('%s',names{i}))
     % add prior density

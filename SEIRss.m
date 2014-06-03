@@ -11,6 +11,7 @@ y0 = [theta(5) theta(6) I0 1-theta(5)-theta(6)-I0]';
 
 ymodel = SEIRfun(time,theta,y0);
 ss = sum(log((abs(ymodel(:,3) - ydata)+1e-10)*2));
+%ss = sum((ymodel(:,3) - ydata).^2);
 
 ssmat = [ssmat ss];
 thetamat = [thetamat theta'];
