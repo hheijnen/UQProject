@@ -6,7 +6,38 @@ clear all
 load seasonaldata.mat;
 load prior.mat;
 
-data = season1;
+seasonindex = 3;
+
+switch seasonindex
+    case 1
+        data = season1;
+        alpha = 0.1523;
+        tau = 1.7357;
+        gamma = 1;
+        m = 2.7*1e-6;
+        S0 = 0.2743;
+        E0 = 0.005;
+        beta = 50;
+    case 2
+        data = season2;
+        alpha = 0.0523;
+        tau = 1.7357;
+        gamma = 1;
+        m = 2.7*1e-6;
+        S0 = 0.2743;
+        E0 = 0.005;
+        beta = 50;
+    case 3
+        data = season3;
+        alpha = 0.1523;
+        tau = 1.7357;
+        gamma = 1;
+        m = 2.7*1e-6;
+        S0 = 0.2743;
+        E0 = 0.005;
+        beta = 50;
+end
+
 
 burnsamples = 1000;
 runsamples = 1000;
