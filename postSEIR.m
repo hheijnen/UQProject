@@ -1,4 +1,4 @@
-function postSEIR(data,parameters,burnsamples,runsamples)
+function [results, chain, s2chain] = postSEIR(data,parameters,burnsamples,runsamples)
 
 %% Model
 

@@ -5,7 +5,7 @@ clear all
 
 load seasonaldata.mat;
 
-data = season2;
+data = season3;
 
 burnsamples = 2000;
 runsamples =  2000;

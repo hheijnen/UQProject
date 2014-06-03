@@ -80,16 +80,103 @@ switch seasonindex
 end
 
 
-burnsamples = 1000;
-runsamples = 1000;
+burnsamples = 2000;
+runsamples = 2000;
+
 
 %% Sampling
 
-postSEIR(data,parameters,burnsamples,runsamples);
+[result, chain, s2chain]  = postSEIR(data,parameters,burnsamples,runsamples);
 
-%% Most probable values
+%% Plot the posterior
+figure
+mcmcplot(chain,[],result,'denspanel',2)
+
+%% mean and std of the params
+chainstats(chain,result);
+
+%% optimal value
+load debugdata.mat
+[dummy, index] = min(ssmat);
+index
+format long;
+optpars = thetamat(:,index)
+
+time = 1:length(data);
+S0 = optpars(5);
+E0 = optpars(6);
+I0 = data(1);
+R0 = 1-S0-E0-I0;
+y00 = [S0 E0 I0 R0];
+
+YModelOpt = SEIRfun(time,optpars,y00);
+YModelMean = SEIRfun(time,mean(chain),y00);
+plot(time,[YModelOpt(:,3),data]);
+legend('Model','Data');
+xlabel('Time(weeks)');
+ylabel('I');
+title('Comparison of the optimal fit for season 10/11');
+
+%% bootstrap confidence intervals
 
 
+% I0 = data(1);
+% I = @(Results) Results(:,2); % wrap the SIRFun to return only I
+% bootfun = @(params) I(SIRfun(time,params,[params(4) I0 1-params(4)-I0]));
+% 
+% nSamples = 10;
+% 
+% ci = bootci(nSamples,{bootfun,chain},'alpha',0.9);
+% 
+% errorbar(time,bootfun(optpars),ci(1,:),ci(2,:))
+% hold on;
+% plot(time,data,'g');
 
+
+%% conf interval:  randomly choose 1e3 samples
+N = 1000;
+II = zeros(N,length(time));
+
+for i=1:N
+    idx = unidrnd(runsamples);
+    
+    S0 = chain(idx,5);
+    E0 = chain(idx,6);
+    I0 = data(1);
+    R0 = 1-S0-E0-I0;
+    y0 = [S0 E0 I0 R0];
+    
+   % y0 = [chain(idx,4) data(1) 1-data(1)-chain(idx,4)];
+    Y = SEIRfun(time,chain(idx,:),y0);
+    II(i,:) = Y(:,3)';
+    %plot(time,Y(:,2));
+    %hold on;
+end
+Q95 = quantile(II,0.975);
+Q05 = quantile(II,0.025);
+
+
+%% plot the stuff
+XX= [time,fliplr(time)]';
+YY = [Q05,fliplr(Q95)];
+h = fill(XX,YY,[0.9 0.9 0.9]);
+set(h,'EdgeColor','None');
+hold on;
+plot(time,YModelOpt(:,3),'b','linewidth',2);
+plot(time,data,'kd','linewidth',2)
+xlabel('Time (weeks)');
+ylabel('I');
+legend('95% Confidence Interval','Optimal fit','Data');
+title('Flu-season 11/12, SEIR')
 %% Calculate Hessian
+
+[parF2, fval2, exitflag, output, grad, hessian] = fminunc(@(par) diff_sqr(par), optpars);
+hessian
+
+%% plot the data for the different seasons ('FluData.eps')
+plot(seasonaldata,'d','linewidth',2);
+xlabel('Time (Weeks)');
+ylabel('I');
+legend('Winter 10/11','Winter 11/12','Winter 12/13');
+title('Google Flu Trends Belgium');
 
