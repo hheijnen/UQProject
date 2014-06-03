@@ -8,9 +8,9 @@ load('seasonaldata.mat');
 
 par0 = theta;
 
-figure
+% figure
 [parF,fval] = fminsearch(@(par) diff_sqr_SEIR(par,data),par0);
-hold off
+% hold off
 
 
 

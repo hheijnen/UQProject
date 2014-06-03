@@ -10,7 +10,7 @@ I0 = mean(ydata(1,1));
 y0 = [theta(5) theta(6) I0 1-theta(5)-theta(6)-I0]';
 
 ymodel = SEIRfun(time,theta,y0);
-ss = sum(log(ymodel(:,3) - ydata)*2);
+ss = sum(log(abs(ymodel(:,3) - ydata)*1000000));
 
 ssmat = [ssmat ss];
 thetamat = [thetamat theta'];

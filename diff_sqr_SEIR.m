@@ -25,9 +25,9 @@ end
 I = Y(:,3);
 difference_sqr = sum((I-season).^2);
 
-plot(I)
-hold on
-plot(season,'r')
+% plot(I)
+% hold on
+% plot(season,'r')
 
 end
 

@@ -21,18 +21,19 @@ model.ssfun = @SEIRss;
 %      {'par2',initial, min, max, pri_mu, pri_sig, targetflag, localflag}
 %      ... }
 
-%    {'thres',   9   ,    0, 10      }
-%     {'B0',       26,    1, 52       }
-%     {'B1',       20,    0, 26       }
-%     {'B2',        1,    0, 1        }
+% parameters = {
+%     {'alpha',   1,    0,          }
+%     {'tau',     1,    0,          }
+%     {'gamma',   1,    0,          }
+%     {'m',       1,    0,          }
+%     {'S0',      1,    0,          }
+%     {'E0',      1,    0,          }
+% };
 %% Run
 %
 
 %  for(i = 1:100)
 options.nsimu = burnsamples;
-
-
-
   
 [results, chain, s2chain]= mcmcrun(model,data,parameters,options);
 
