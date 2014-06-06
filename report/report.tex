@@ -9,6 +9,8 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{epstopdf}
+\usepackage{multirow}
+\usepackage{placeins}
 
 
 \author{Yacine Derouach, Stefan Hegglin, Huub Heijnen, Elise Ledieu}
@@ -16,7 +18,8 @@
 \begin{document}
 \maketitle
 
-\section{Model and Data Description}
+\section{Introduction : Model and Data Description}
+\label{sec:intro}
 \subsection{The SIR model}
 \label{sec:SIR}
 \paragraph{}
@@ -37,15 +40,16 @@ with \[ \lambda = \beta (\alpha I + m) \]
 where $S$ is the normalized number of susceptible individuals, $I$is the normalized number of infected individuals, $R$ is the normalized number of recovered individuals, $\tau $ is the recovery rate, $\beta $ is the transmission rate, $\alpha$ is the ratio of symptomatic infection and m is the infectious migration rate.
 
 \begin{figure}[h]
+\FloatBarrier
 \center
-   \includegraphics[width = \textwidth]{picture1.png}
+   \includegraphics[width = \textwidth]{figures/picture1.png}
    \caption{Compartmental representation of the SIR model}
    \label{SIRcr}
 \end{figure}
 
 $\beta$ is time-dependent and models the seasonality of the flu epidemics. Here,every season is considered as independent of the other ones. The parameters are optimized on a data set only containing winter months, where the epidemy occurs. $\beta$ is here set to 50, as a scaling parameter for the other parameters $\alpha$ and $\tau$.
 
-The set of parameters to be determined in this case is : $ {\alpha, \tau, m, S_o}$. $S_o$ is the number of susceptible individuals at the beginning at each season. The parameters $m$ and $\tau$ do not depend on the season considered, whereas the parameters $\alpha$ and $S_o$ change at each season.
+The set of parameters to be determined in this case is : $ {\alpha, \tau, m, S_o}$. $S_o$ is the number of susceptible individuals at the beginning at each season.
 
 \subsection{The SEIR model}
 \paragraph{}
@@ -69,19 +73,28 @@ with \[ \lambda = \beta (\alpha I + m) \]
 where $E$ is the normalized number of exposed individuals and $\gamma$ is the transition rate from latent to infected state.
 
 \begin{figure}[h]
+\FloatBarrier
 \center
-   \includegraphics[width = \textwidth]{picture2.png}
+   \includegraphics[width = \textwidth]{figures/picture2.png}
    \caption{Compartmental representation of the SEIR model}
    \label{SEIRcr}
 \end{figure}
 
 $\beta$ has the same behavior in this model and in the SIR model (Section \ref{sec:SIR}).
 
-The set of parameters to be determined in this model is : $ { \alpha, \gamma, \tau, m, S_o}$. Here, we suppose that $\gamma$ is constant for all the seasons. 
+The set of parameters to be determined in this model is : $ { \alpha, \gamma, \tau, m, S_o}$. 
 
 \subsection{Data}
 \paragraph{}
 The data set used is the one provided by Google Flu Trends. The data is made of the number of infected people reported weekly between December 2011 and May 2014. This time span correspond to three flu seasons. A flu season is considered to begin in December, as the peak of the flu is observed in February in the European countries \cite{baumgartner2012seasonality}. The data was normalized. 
+
+\begin{figure}[h]
+\FloatBarrier
+\center
+   \includegraphics[width = \textwidth]{figures/FluData.eps}
+   \caption{Flu Data in Belgium (source : Google Flu Trends)}
+   \label{fig:fluData}
+\end{figure}
 
 \section{Likelihood}
 \paragraph{}
@@ -103,56 +116,223 @@ $I(x(t), \Theta)$ corresponds to the solution of an ODE system. There may be no 
 
 \section{Priors}
 \paragraph{}
-Thanks to the article by Coehlo et al. \cite{coelho2011bayesian}, it is possible to use informative priors for the SIR model. By analogy, the information on the parameters in the SIR model is reused to determine the priors of the SEIR model. The $\gamma$ parameter has an uninformative prior (a uniform distribution between 0 and 1). Moreover, the prior over $\tau$ is considered to be uniform between 1 and 2, as it was derived experimentally in the article of Coehlo et al.\cite{coelho2011bayesian}. 
+Thanks to the article by Coehlo et al. \cite{coelho2011bayesian}, it is possible to use informative priors for the SIR model.All of them are defined as uniform on a certain interval.
 
 Here are the priors used for each parameter : 
 \begin{itemize}
-\item $\alpha \sim \mathcal{U}(0, 0.4)$ 
-\item $\gamma \sim \mathcal{U}(0, 1)$
-\item $\tau \sim \mathcal{U}(1, 2)$
-\item $m \sim  \mathcal{U}(0, 4e-6)$
-\item $S_o \sim \mathcal{U}(0, 1)$
+\item $\alpha \sim \mathcal{U}(0, 0.7)$
+\item $\tau \sim \mathcal{U}(0, 5)$
+\item $m \sim  \mathcal{U}(0, 1e-4)$
+\item $S_o \sim \mathcal{U}(0, 0.9)$
 \end{itemize}
+
+\paragraph{}
+For the SEIR model, we also use uniform priors, without fixing any upper bound.
+
+\paragraph{}
+Moreover, before computing the Markov Chain Monte Carlo, the initial values of each parameter were optimized. The method used for this prior optimization was a minimum search.
 
 \section{Optimisation and Uncertainty of the parameters}
 
 \subsection{Method : Delayed Rejection Markov Chain Monte Carlo}
-
+\paragraph{}
 To find a good parameter fit, two steps were used : firstly, $\tau$ was fixed to the value $1.4$ as proposed by \cite{coelho2011bayesian} and the other parameters were fitted using the DRAM algorithm. Secondly, the constraint over $\tau$ was released and $\tau$ was optimized given the optimal values of the parameters found in the first step
 
+\subsubsection{Non-zero Migration Rate}
+\paragraph{}
 In Belgium, the parameters found by the DRAM algorithm are given in table \ref{tab:sirDRAM} for the SIR model and in table \ref{tab:seirDRAM} for the SEIR model.
 
-\begin{table}[h]
+\begin{table}[H]
 \centering
-\begin{tabular}{| c | c | c |}
+\begin{tabular}{| c | c | c | c | c |}
     \hline
-    Parameter & Season & Optimal Value &  Standard Deviation\\ \hline
-    \multirow{1}{*}{$\alpha$} & 2010 & 0.1525 & 0 \\ \hline
-    \multirow{1}{*}{$\tau$} & 2010 & 1.7357 & 0 \\ \hline
-    \multirow{1}{*}{$m$} & 2010 & 2.7e-6 & 0 \\ \hline
-    \multirow{1}{*}{$S_o$} & 2010 & 0.2743 & 0 \\
-    \hline  
+    Parameter & Season & Optimal Value &  Standard Deviation & MC error\\ \hline
+    \multirow{3}{*}{$\alpha$} & 2010 & 0.19659 & 0.031471 & 0.0061678 \\
+    & 2011 & 0.25077 & 0.039664 & 0.00777 \\
+    & 2012 & 0.094579 & 0.015909 & 0.0032257 \\ \hline
+    \multirow{3}{*}{$\tau$} & 2010 & 1.4139 & 0.20836 & 0.042741 \\ 
+    & 2011 & 1.8848 & 0.67187 & 0.13294 \\ 
+    & 2012 & 1.8732 & 0.33158 & 0.068435 \\ \hline
+    \multirow{3}{*}{$m$} & 2010 & 3.122e-5 & 2.6057e-5 & 4.8045e-6 \\ 
+    & 2011 & 3.7038e-5 & 3.1233e-5 & 6.663e-6 \\ 
+    & 2012 & 3.7222e-5 & 2.6499e-5 & 5.5581e-6 \\ \hline
+    \multirow{3}{*}{$S_o$} & 2010 & 0.17609 & 0.040317 & 0.0081882 \\
+    & 2011 & 0.17968 & 0.079037 & 0.015667 \\ 
+    & 2012 & 0.53617 & 0.15156 & 0.030852 \\ \hline
     \end{tabular}
     \caption{Optimal parameters found for the SIR model in Belgium}
     \label{tab:sirDRAM}
 \end{table}
 
-\begin{table}[h]
+\paragraph{}
+The following figures \ref{fig:sir_post1}, \ref{fig:sir_post2} and \ref{fig:sir_post3} sum up the posterior obtained for each season for every parameter in the SIR model. The parameter $m$ seems to be bimodal for each season. For season 2010 and 2011, $\alpha$, $\tau$ and $S_o$ have a unique mode, whereas in the flu season 2012, the distributions are broader, not allowing to establish the existence of one or two clear modes.
+
+\begin{figure}[H!]
+\FloatBarrier
 \centering
-\begin{tabular}{| c | c | c |}
+    \includegraphics[height = 0.25\textheight]{figures/SIR_posterior_season1.eps}
+    \caption{SIR Model : Posterior of each parameter for Season 2010}
+    \label{fig:sir_post1}
+    \includegraphics[height = 0.25\textheight]{figures/SIR_posterior_season2.eps}
+    \caption{SIR Model : Posterior of each parameter for Season 2011}
+    \label{fig:sir_post2}
+    \includegraphics[height = 0.25\textheight]{figures/SIR_posterior_season3.eps}
+    \caption{SIR Model : Posterior of each parameter for Season 2012}
+    \label{fig:sir_post3}
+\end{figure}
+
+
+\paragraph{}
+The following figures \ref{fig:sir_pred1}, \ref{fig:sir_pred2}, \ref{fig:sir_pred3} sum up the prediction obtained by the SIR model for each season. The SIR model for season 2011 shows way more uncertainty in the parameters than for the two other seasons. It might be due to the fact that flu epidemics begin with a delay, compared to the convention adopted in the model definition (Section \ref{sec:intro}).
+
+\begin{figure}[h]
+\FloatBarrier
+\centering
+    \includegraphics[height = 0.25\textheight]{figures/SIR_prediction_season1.eps}
+    \caption{SIR Model : Prediction of the SIR Model compared to the Data for Season 2010}
+    \label{fig:sir_pred1}
+    \includegraphics[height = 0.25\textheight]{figures/SIR_prediction_season2.eps}
+    \caption{SIR Model : Prediction of the SIR Model compared to the Data for Season 2011}
+    \label{fig:sir_pred2}
+    \includegraphics[height = 0.25\textheight]{figures/SIR_prediction_season3.eps}
+    \caption{SIR Model : Prediction of the SIR Model compared to the Data for Season 2012}
+    \label{fig:sir_pred3}
+\end{figure}
+
+
+\begin{table}[H]
+\FloatBarrier
+\centering
+\begin{tabular}{| c | c | c | c |}
     \hline
     Parameter & Season & Optimal Value &  Standard Deviation\\ \hline
-    \multirow{1}{*}{$\alpha$} & 2010 & 0.1525 & 0 \\ \hline
-    \multirow{1}{*}{$\gamma$} & 2010 & 0 & 0 \\ \hline
-    \multirow{1}{*}{$\tau$} & 2010 & 1.7357 & 0 \\ \hline
-    \multirow{1}{*}{$m$} & 2010 & 2.7e-6 & 0 \\ \hline
-    \multirow{1}{*}{$S_o$} & 2010 & 0.2743 & 0 \\
-    \hline  
+    \multirow{3}{*}{$\alpha$} & 2010 & 0.35091 & 0.0040362\\
+    & 2011 & 0.9304 & 0.35903\\
+    & 2012 & 0.44962 & 0.14712 \\ \hline
+    \multirow{3}{*}{$\tau$} & 2010 & 3.8804 & 0.0015877 \\ 
+    & 2011 & 14.61 & 6.2934 \\
+    & 2012 & 3.3268 & 1.2489\\ \hline
+    \multirow{3}{*}{$\gamma$} & 2010 & 1.19999 & 0.00072943\\
+    & 2011 & 0.659 & 0.19603 \\ 
+    & 2012 & 0.66027 & 0.21565 \\ \hline
+    \multirow{3}{*}{$m$} & 2010 & 6.7856e-5 & 6.1501e-5 \\ 
+    & 2011 & 6.5738e-6 & 4.3714e-6 \\
+    & 2012 & 2.357e-6 & 2.0332e-6 \\ \hline
+    \multirow{3}{*}{$S_o$} & 2010 & 0.30925 & 0.0070746 \\ 
+    & 2011 & 0.82778 & 0.37533 \\ 
+    & 2012 & 0.42712 & 0.17408 \\ \hline
+    \multirow{3}{*}{$E_o$} & 2010 & 0.0021444 & 0.0010195\\
+    & 2011 & 0.012497 & 0.37533 \\ 
+    & 2012 & 0.0080759 & 0.0033979 \\ \hline
     \end{tabular}
     \caption{Optimal parameters found for the SEIR model in Belgium}
     \label{tab:seirDRAM}
 \end{table}
-  
+
+\paragraph{}
+The following figures \ref{fig:seir_post1}, \ref{fig:seir_post2} and \ref{fig:seir_post3} sum up the posterior obtained for each season for every parameter in the SEIR model.
+
+\begin{figure}[H!]
+\FloatBarrier
+\centering
+    \includegraphics[height = 0.25\textheight]{figures/SEIR_posterior_season1.eps}
+    \caption{SEIR Model : Posterior of each parameter for Season 2010}
+    \label{fig:seir_post1}
+    \includegraphics[height = 0.25\textheight]{figures/SEIR_posterior_season2.eps}
+    \caption{SEIR Model : Posterior of each parameter for Season 2011}
+    \label{fig:seir_post2}
+    \includegraphics[height = 0.25\textheight]{figures/SEIR_posterior_season3.eps}
+    \caption{SEIR Model : Posterior of each parameter for Season 2012}
+    \label{fig:seir_post3}
+\end{figure}
+
+
+\paragraph{}
+The following figures \ref{fig:seir_pred1}, \ref{fig:seir_pred2}, \ref{fig:seir_pred3} sum up the prediction obtained by the SEIR model for each season.
+
+\paragraph{}
+The comparison between the different seasons in the SEIR model are equivalent to the one on the SIR model. The uncertainty of the parameters in the flu season 2011 is well illustrated by the standard deviation linked to the parameter $\tau$, as $\tau$ has a critical influence on the spread of the infection. The characterization of season 2010 is better in the SEIR model than in the SIR model.
+
+\paragraph{}
+As the results obtained for the SEIR model and the SIR model are not that different, choosing between the two typically leads to a discussion about the trade-off between accuracy for well-defined data, overall performance for different data sets and number of parameters to fit. As a first approach, using the SIR model gives a general idea of the order of magnitude of the parameters and allows to refine the definition of the data set. For instance, it can answer : Is there a delay in the flu season ?. The SEIR model can then be fitted to have the most accurate model possible. However, the data must be well-defined : it could otherwise lead to a disaster.
+
+\paragraph{}
+When we compare the different parameters from one flu season to another in the same model, some season-independent parameters emerge :  $m$ and $tau$ in both models.
+
+\begin{figure}[h]
+\FloatBarrier
+\centering
+    \includegraphics[height = 0.25\textheight]{figures/SEIR_prediction_season1.eps}
+    \caption{SEIR Model : Prediction of the SIR Model compared to the Data for Season 2010}
+    \label{fig:seir_pred1}
+    \includegraphics[height = 0.25\textheight]{figures/SEIR_prediction_season2.eps}
+    \caption{SEIR Model : Prediction of the SIR Model compared to the Data for Season 2011}
+    \label{fig:seir_pred2}
+    \includegraphics[height = 0.25\textheight]{figures/SEIR_prediction_season3.pdf}
+    \caption{SEIR Model : Prediction of the SIR Model compared to the Data for Season 2012}
+    \label{fig:seir_pred3}
+\end{figure}
+
+\subsubsection{Zero Migration Rate}
+\paragraph{}
+In Belgium for a zero migration rate, the parameters found by the DRAM algorithm are given in table \ref{tab:sirm0DRAM} for the SIR model
+\begin{table}[H]
+\FloatBarrier
+\centering
+\begin{tabular}{| c | c | c | c | c |}
+    \hline
+    Parameter & Season & Optimal Value &  Standard Deviation & MC error\\ \hline
+    \multirow{3}{*}{$\alpha$} & 2010 & 0.19291 & 0.028124 & 0.0055217 \\
+    & 2011 & 0.18143 & 0.040817 & 0.0084926 \\
+    & 2012 & 0.16 & 0.0.044325 & 0.0079516 \\ \hline
+    \multirow{3}{*}{$\tau$} & 2010 & 1.486 & 0.24735 & 0.046956\\ 
+    & 2011 & 1.8991 & 0.33592 & 0.07264 \\ 
+    & 2012 & 1.2862 & 0.33372 & 0.059622 \\ \hline
+    \multirow{3}{*}{$S_o$} & 2010 & 0.19415 & 0.055603 & 0.010885 \\
+    & 2011 & 0.23853 & 0.078236 & 0.016589 \\ 
+    & 2012 & 0.24848 & 0.11218 & 0.020644 \\ \hline
+    \end{tabular}
+    \caption{Optimal parameters found for the SIR model in Belgium with $m=0$}
+    \label{tab:sirm0DRAM}
+\end{table}
+
+\paragraph{}
+The following figures \ref{fig:sir0_post1}, \ref{fig:sir0_post2} and \ref{fig:sir0_post3} sum up the posterior obtained for each season for every parameter in the SIR model.
+
+\paragraph{}
+The non migratory model is less accurate than the migratory model. Even if the uncertainty of the parameters is relatively low, it fails to identify the behavior of the data : for instance, the delay in season 2011 is not taken into account and then it is unable to predict when the peak is going to be.
+
+\begin{figure}[H!]
+\FloatBarrier
+\centering
+    \includegraphics[height = 0.25\textheight]{figures/SIR_posterior_season1_m=0.eps}
+    \caption{SIR Model : Posterior of each parameter for Season 2010 with m=0}
+    \label{fig:sir0_post1}
+    \includegraphics[height = 0.25\textheight]{figures/SIR_posterior_season2_m=0.eps}
+    \caption{SIR Model : Posterior of each parameter for Season 2011 with m=0}
+    \label{fig:sir0_post2}
+    \includegraphics[height = 0.25\textheight]{figures/SIR_posterior_season3_m=0.eps}
+    \caption{SIR Model : Posterior of each parameter for Season 2012 with m=0}
+    \label{fig:sir0_post3}
+\end{figure}
+
+
+\paragraph{}
+The following figures \ref{fig:sir0_pred1}, \ref{fig:sir0_pred2}, \ref{fig:sir0_pred3} sum up the prediction obtained by the SIR model for each season.
+
+\begin{figure}[h]
+\FloatBarrier
+\centering
+    \includegraphics[height = 0.25\textheight]{figures/SIR_prediction_season1_m=0.eps}
+    \caption{SIR Model : Prediction of the SIR Model compared to the Data for Season 2010 with m=0}
+    \label{fig:sir0_pred1}
+    \includegraphics[height = 0.25\textheight]{figures/SIR_prediction_season2_m=0.eps}
+    \caption{SIR Model : Prediction of the SIR Model compared to the Data for Season 2011 with m=0}
+    \label{fig:sir0_pred2}
+    \includegraphics[height = 0.25\textheight]{figures/SIR_prediction_season3_m=0.eps}
+    \caption{SIR Model : Prediction of the SIR Model compared to the Data for Season 2012 with m=0}
+    \label{fig:sir0_pred3}
+\end{figure}
 
 \subsection{Method : Asymptotic Approximation}
 \paragraph{}
@@ -185,6 +365,9 @@ H(\Theta^*) = \frac{\partial^2 l}{\partial \Theta^2} (\Theta^*)
 \end{equation}
 
 As there is no analytical formulation of the solution $I(x(t), \Theta)$, we use Matlab to solve this.
+
+
+
 
 
 \bibliographystyle{plain}
