@@ -11,6 +11,9 @@
 \usepackage{epstopdf}
 \usepackage{multirow}
 \usepackage{placeins}
+\usepackage{rotating}
+
+
 
 
 \author{Yacine Derouach, Stefan Hegglin, Huub Heijnen, Elise Ledieu}
@@ -37,7 +40,7 @@ The Susceptible-Infected-Recovered (SIR) model is a deterministic model that des
 
 with \[ \lambda = \beta (\alpha I + m) \]
 
-where $S$ is the normalized number of susceptible individuals, $I$is the normalized number of infected individuals, $R$ is the normalized number of recovered individuals, $\tau $ is the recovery rate, $\beta $ is the transmission rate, $\alpha$ is the ratio of symptomatic infection and m is the infectious migration rate.
+where $S$ is the normalized number of susceptible individuals, $I$ is the normalized number of infected individuals, $R$ is the normalized number of recovered individuals, $\tau $ is the recovery rate, $\beta $ is the transmission rate, $\alpha$ is the ratio of symptomatic infection and m is the infectious migration rate.
 
 \begin{figure}[h]
 \FloatBarrier
@@ -47,9 +50,9 @@ where $S$ is the normalized number of susceptible individuals, $I$is the normali
    \label{SIRcr}
 \end{figure}
 
-$\beta$ is time-dependent and models the seasonality of the flu epidemics. Here,every season is considered as independent of the other ones. The parameters are optimized on a data set only containing winter months, where the epidemy occurs. $\beta$ is here set to 50, as a scaling parameter for the other parameters $\alpha$ and $\tau$.
+$\beta$ is time-dependent and models the seasonality of the flu epidemics. Here, every season is considered as independent of the other ones. The parameters are optimized on a data set only containing winter months, where the epidemy occurs. $\beta$ is here set to 50, as a scaling parameter for the other parameters $\alpha$ and $\tau$.
 
-The set of parameters to be determined in this case is : $ {\alpha, \tau, m, S_o}$. $S_o$ is the number of susceptible individuals at the beginning at each season.
+The set of parameters to be determined in this case is : $ {\alpha, \tau, m, S_o}$. $S_o$ is the number of susceptible individuals at the beginning of each season.
 
 \subsection{The SEIR model}
 \paragraph{}
@@ -116,56 +119,61 @@ $I(x(t), \Theta)$ corresponds to the solution of an ODE system. There may be no 
 
 \section{Priors}
 \paragraph{}
-Thanks to the article by Coehlo et al. \cite{coelho2011bayesian}, it is possible to use informative priors for the SIR model.All of them are defined as uniform on a certain interval.
+Thanks to the article by Coehlo et al. \cite{coelho2011bayesian}, it is possible to use informative priors for the SIR model. All of them are defined as uniform on a certain interval.
 
 Here are the priors used for each parameter : 
 \begin{itemize}
 \item $\alpha \sim \mathcal{U}(0, 0.7)$
 \item $\tau \sim \mathcal{U}(0, 5)$
 \item $m \sim  \mathcal{U}(0, 1e-4)$
-\item $S_o \sim \mathcal{U}(0, 0.9)$
+\item $S_0 \sim \mathcal{U}(0, 0.9)$
 \end{itemize}
 
 \paragraph{}
-For the SEIR model, we also use uniform priors, without fixing any upper bound.
+In both the SIR and SEIR model, the initial value $I_0$ was chosen to fit the first data point. This determines the value $R_0$ for the SIR model; whereas in the SEIR model an additional parameter $E_0$ has to be infered.
 
 \paragraph{}
-Moreover, before computing the Markov Chain Monte Carlo, the initial values of each parameter were optimized. The method used for this prior optimization was a minimum search.
+We also used uniform priors with lower bound 0 in the SEIR model, however we did not choose any upper bound to allow for more freedom.
+
+%\paragraph{}
+%Moreover, before computing the Markov Chain Monte Carlo, the initial values of each parameter were optimized. The method used for this prior optimization was a minimum search.
 
 \section{Optimisation and Uncertainty of the parameters}
 
 \subsection{Method : Delayed Rejection Markov Chain Monte Carlo}
 \paragraph{}
-To find a good parameter fit, two steps were used : firstly, $\tau$ was fixed to the value $1.4$ as proposed by \cite{coelho2011bayesian} and the other parameters were fitted using the DRAM algorithm. Secondly, the constraint over $\tau$ was released and $\tau$ was optimized given the optimal values of the parameters found in the first step
+To find a good parameter fit, two steps were used : first, $\tau$ was fixed to the value $1.4$ as proposed by \cite{coelho2011bayesian} and the other parameters were optimised using Matlab's fminunc(). Then these values were used as initial values for the MCMC sampling process and the constraint for $\tau$ was released. We discarded 2000 samples for burn-in and used 2000 samples for the reconstruction of the posterior.
 
 \subsubsection{Non-zero Migration Rate}
 \paragraph{}
-In Belgium, the parameters found by the DRAM algorithm are given in table \ref{tab:sirDRAM} for the SIR model and in table \ref{tab:seirDRAM} for the SEIR model.
+The parameters found by the DRAM algorithm are given in table \ref{tab:sirDRAM} for the SIR model and in table \ref{tab:seirDRAM} for the SEIR model.
 
-\begin{table}[H]
+%\begin{table}[H]
+\begin{sidewaystable}[H]
 \centering
-\begin{tabular}{| c | c | c | c | c |}
+\begin{tabular}{| c | c | c | c | c | c | c |}
     \hline
-    Parameter & Season & Optimal Value &  Standard Deviation & MC error\\ \hline
-    \multirow{3}{*}{$\alpha$} & 2010 & 0.19659 & 0.031471 & 0.0061678 \\
-    & 2011 & 0.25077 & 0.039664 & 0.00777 \\
-    & 2012 & 0.094579 & 0.015909 & 0.0032257 \\ \hline
-    \multirow{3}{*}{$\tau$} & 2010 & 1.4139 & 0.20836 & 0.042741 \\ 
-    & 2011 & 1.8848 & 0.67187 & 0.13294 \\ 
-    & 2012 & 1.8732 & 0.33158 & 0.068435 \\ \hline
-    \multirow{3}{*}{$m$} & 2010 & 3.122e-5 & 2.6057e-5 & 4.8045e-6 \\ 
-    & 2011 & 3.7038e-5 & 3.1233e-5 & 6.663e-6 \\ 
-    & 2012 & 3.7222e-5 & 2.6499e-5 & 5.5581e-6 \\ \hline
-    \multirow{3}{*}{$S_o$} & 2010 & 0.17609 & 0.040317 & 0.0081882 \\
-    & 2011 & 0.17968 & 0.079037 & 0.015667 \\ 
-    & 2012 & 0.53617 & 0.15156 & 0.030852 \\ \hline
+    Parameter & Season & Mean (posterior) &  Standard Deviation (posterior) & MPV & uncert MPV & MC error\\ \hline
+    \multirow{3}{*}{$\alpha$} & 2010 & 0.19659 & 0.031471 &0.21009 & 0.00028& 0.0061678 \\
+    & 2011 & 0.25077 & 0.039664 & 0.27600 & 7.6747e-5 & 0.00777 \\
+    & 2012 & 0.094579 & 0.015909 & 0.08250 & 4.6853e-6 & 0.0032257 \\ \hline
+    \multirow{3}{*}{$\tau$} & 2010 & 1.4139 & 0.20836 & 1.1549 & 0.1166 & 0.042741 \\ 
+    & 2011 & 1.8848 & 0.67187 & 1.5712 & 0.1132 & 0.13294 \\ 
+    & 2012 & 1.8732 & 0.33158 & 2.0315 & 0.0761 & 0.068435 \\ \hline
+    \multirow{3}{*}{$m$} & 2010 & 3.122e-5 & 2.6057e-5 &7.3915e-5 & 3e-14 & 4.8045e-6 \\ 
+    & 2011 & 3.7038e-5 & 3.1233e-5 &1.6678e-5 & 2.99e-14 & 6.663e-6 \\ 
+    & 2012 & 3.7222e-5 & 2.6499e-5 & 2.5251e-5 & 5.5e-15 & 5.5581e-6 \\ \hline
+    \multirow{3}{*}{$S_o$} & 2010 & 0.17609 & 0.040317 &0.11792 & 0.000572 & 0.0081882 \\
+    & 2011 & 0.17968 & 0.079037 & 0.14428 & 0.00022 & 0.015667 \\ 
+    & 2012 & 0.53617 & 0.15156 & 0.62491 & 0.00754 & 0.030852 \\ \hline
     \end{tabular}
-    \caption{Optimal parameters found for the SIR model in Belgium}
+    \caption{Optimal parameters found for the SIR model in Belgium. MPV denotes the most probable value (mode) of the posterior distribution. The uncertainty around the MPV was computed via numerical computation 2nd derivative of the posterior.}
     \label{tab:sirDRAM}
-\end{table}
+%\end{table}
+\end{sidewaystable}
 
 \paragraph{}
-The following figures \ref{fig:sir_post1}, \ref{fig:sir_post2} and \ref{fig:sir_post3} sum up the posterior obtained for each season for every parameter in the SIR model. The parameter $m$ seems to be bimodal for each season. For season 2010 and 2011, $\alpha$, $\tau$ and $S_o$ have a unique mode, whereas in the flu season 2012, the distributions are broader, not allowing to establish the existence of one or two clear modes.
+Figures \ref{fig:sir_post1}, \ref{fig:sir_post2} and \ref{fig:sir_post3} sum up the posterior obtained for each season for every parameter in the SIR model. The parameter $m$ seems to be bimodal for each season. For season 2010 and 2011, $\alpha$, $\tau$ and $S_o$ have a unique mode, whereas in the flu season 2012, the distributions are broader, not allowing to establish the existence of one or two clear modes.
 
 \begin{figure}[H!]
 \FloatBarrier
@@ -205,7 +213,7 @@ The following figures \ref{fig:sir_pred1}, \ref{fig:sir_pred2}, \ref{fig:sir_pre
 \centering
 \begin{tabular}{| c | c | c | c |}
     \hline
-    Parameter & Season & Optimal Value &  Standard Deviation\\ \hline
+    Parameter & Season & Mean (posterior) &  Standard Deviation (posterior)\\ \hline
     \multirow{3}{*}{$\alpha$} & 2010 & 0.35091 & 0.0040362\\
     & 2011 & 0.9304 & 0.35903\\
     & 2012 & 0.44962 & 0.14712 \\ \hline
@@ -225,7 +233,7 @@ The following figures \ref{fig:sir_pred1}, \ref{fig:sir_pred2}, \ref{fig:sir_pre
     & 2011 & 0.012497 & 0.37533 \\ 
     & 2012 & 0.0080759 & 0.0033979 \\ \hline
     \end{tabular}
-    \caption{Optimal parameters found for the SEIR model in Belgium}
+    \caption{Infered parameters for the SEIR model in Belgium}
     \label{tab:seirDRAM}
 \end{table}
 
@@ -263,13 +271,13 @@ When we compare the different parameters from one flu season to another in the s
 \FloatBarrier
 \centering
     \includegraphics[height = 0.25\textheight]{figures/SEIR_prediction_season1.eps}
-    \caption{SEIR Model : Prediction of the SIR Model compared to the Data for Season 2010}
+    \caption{SEIR Model : Prediction of the SEIR Model compared to the Data for Season 2010}
     \label{fig:seir_pred1}
     \includegraphics[height = 0.25\textheight]{figures/SEIR_prediction_season2.eps}
-    \caption{SEIR Model : Prediction of the SIR Model compared to the Data for Season 2011}
+    \caption{SEIR Model : Prediction of the SEIR Model compared to the Data for Season 2011}
     \label{fig:seir_pred2}
     \includegraphics[height = 0.25\textheight]{figures/SEIR_prediction_season3.pdf}
-    \caption{SEIR Model : Prediction of the SIR Model compared to the Data for Season 2012}
+    \caption{SEIR Model : Prediction of the SEIR Model compared to the Data for Season 2012}
     \label{fig:seir_pred3}
 \end{figure}
 
@@ -279,10 +287,10 @@ In Belgium for a zero migration rate, the parameters found by the DRAM algorithm
 \begin{table}[h]
 \FloatBarrier
 \centering
-\begin{tabular}{| c | c | c | c | c |}
+\begin{tabular}{| c | c | c | c | c | c |}
     \hline
-    Parameter & Season & Optimal Value &  Standard Deviation & MC error\\ \hline
-    \multirow{3}{*}{$\alpha$} & 2010 & 0.19291 & 0.028124 & 0.0055217 \\
+    Parameter & Season  & Mean &  Standard Deviation & MC error\\ \hline
+    \multirow{3}{*}{$\alpha$} & 2010 & 0.19291 & 0.028124 &  0.0055217 \\
     & 2011 & 0.18143 & 0.040817 & 0.0084926 \\
     & 2012 & 0.16 & 0.0.044325 & 0.0079516 \\ \hline
     \multirow{3}{*}{$\tau$} & 2010 & 1.486 & 0.24735 & 0.046956\\ 
@@ -292,15 +300,17 @@ In Belgium for a zero migration rate, the parameters found by the DRAM algorithm
     & 2011 & 0.23853 & 0.078236 & 0.016589 \\ 
     & 2012 & 0.24848 & 0.11218 & 0.020644 \\ \hline
     \end{tabular}
-    \caption{Optimal parameters found for the SIR model in Belgium with $m=0$}
+    \caption{Infered parameters for the SIR model in Belgium with $m=0$}
     \label{tab:sirm0DRAM}
 \end{table}
+
+
 
 \paragraph{}
 The following figures \ref{fig:sir0_post1}, \ref{fig:sir0_post2} and \ref{fig:sir0_post3} sum up the posterior obtained for each season for every parameter in the SIR model.
 
 \paragraph{}
-The non migratory model is less accurate than the migratory model. Even if the uncertainty of the parameters is relatively low, it fails to identify the behavior of the data : for instance, the delay in season 2011 is not taken into account and then it is unable to predict when the peak is going to be.
+The non migratory model is less accurate than the migratory model. Even if the uncertainty of the parameters is relatively low, it fails to identify the behaviour of the data : for instance, the delay in season 2011 is not taken into account and then it is unable to predict when the peak is going to be.
 
 \begin{figure}[H!]
 \FloatBarrier
@@ -358,13 +368,90 @@ The best estimate can thus be derived by $\frac{\partial l}{\partial \Theta}(\Th
 
 The optimal model parameters can be retrieved by solving a least square optimization problem. 
 
-The spread of uncertainty is modelled by the Hessian :
+The spread of uncertainty is modelled by the inverse of the Hessian :
 
 \begin{equation}
 H(\Theta^*) = \frac{\partial^2 l}{\partial \Theta^2} (\Theta^*) 
 \end{equation}
 
-As there is no analytical formulation of the solution $I(x(t), \Theta)$, the output given by Matlab is in tables \ref{tab:sir}, \ref{tab:sir0} and \ref{tab:seir}. Moreover, the same formulation can be used for both models. Moreover, $\tau$ is considered as fixed to the value $1.4$ here.
+As there is no analytical formulation of the solution $I(x(t), \Theta)$, we solved the optimisation task using Matlab's fminunc solver, see tables \ref{tab:sir}, \ref{tab:sir0} and \ref{tab:seir}. The numerical computation of the full Hessian failed, indicating a very unstable optimum. This is not surprising, because the ODEs are very sensitive with respect to the parameters and the parameters span different orders of magnitude.
+
+
+%\begin{table}[H]
+%\FloatBarrier
+%\centering
+%\begin{tabular}{| c | c | c |}
+%    \hline
+%    Parameter & Season  & Optimal value\\ \hline
+%    \multirow{3}{*}{$\alpha$} & 2010 &0.227 \\
+%    & 2011 & 0.283\\
+%    & 2012 & 0.126 \\ \hline
+%    \multirow{3}{*}{$\tau$ (fixed)} & 2010 & 1.4\\ 
+%    & 2011 & 1.4\\ 
+%    & 2012 & 1.4 \\ \hline
+%    \multirow{3}{*}{$m$} & 2010 & 3.3e-6\\ 
+%    & 2011 & 4.1e-6\\
+%    & 2012 & 2.6e-6\\ \hline
+%    \multirow{3}{*}{$S_o$} & 2010 & 0.162\\
+%    & 2011 & 0.136 \\ 
+%    & 2012 & 0.310 \\ \hline
+%    \end{tabular}
+%    \caption{Optimal parameters found by optimisation using fminunc() for the SIR model in Belgium}
+%    \label{tab:optimVals}
+%\end{table}
+%
+%\begin{table}[H]
+%\FloatBarrier
+%\centering
+%\begin{tabular}{| c | c | c |}
+%    \hline
+%    Parameter & Season  & Optimal value\\ \hline
+%    \multirow{3}{*}{$\alpha$} & 2010 &0.230 \\
+%    & 2011 & 0.289\\
+%    & 2012 & 0.126 \\ \hline
+%    \multirow{3}{*}{$\tau$ (fixed)} & 2010 &1.4 \\ 
+%    & 2011 & 1.4\\ 
+%    & 2012 & 1.4 \\ \hline
+%    \multirow{3}{*}{$S_o$} & 2010 & 0.160\\
+%    & 2011 & 0.134 \\ 
+%    & 2012 & 0.312 \\ \hline
+%    \end{tabular}
+%    \caption{Optimal parameters found by optimisation using fminunc() for the SIR m=0 model in Belgium}
+%    \label{tab:optimValsm0}
+%\end{table}
+%
+%
+%\begin{table}[H]
+%\FloatBarrier
+%\centering
+%\begin{tabular}{| c | c | c |}
+%    \hline
+%    Parameter & Season & Optimal value\\ \hline
+%    \multirow{3}{*}{$\alpha$} & 2010 & 0.311\\
+%    & 2011 & 0.839\\
+%    & 2012 & 0.352 \\ \hline
+%    \multirow{3}{*}{$\tau$} & 2010 & 1.858 \\ 
+%    & 2011 & 3.524\\
+%    & 2012 & 2.174\\ \hline
+%    \multirow{3}{*}{$\gamma$} & 2010 & 2.303\\
+%    & 2011 & 0.584\\ 
+%    & 2012 & 0.702\\ \hline
+%    \multirow{3}{*}{$m$} & 2010 & 2.2e-6\\ 
+%    & 2011 & 2.1e-6\\
+%    & 2012 & 2.4e-6 \\ \hline
+%    \multirow{3}{*}{$S_o$} & 2010 &0.171 \\ 
+%    & 2011 & 0.112 \\ 
+%    & 2012 & 0.287\\ \hline
+%    \multirow{3}{*}{$E_o$} & 2010 & 0.001\\
+%    & 2011 & 0.006\\ 
+%    & 2012 & 0.008\\ \hline
+%    \end{tabular}
+%    \caption{Optimal parameters found by optimisation using fminunc() for the SEIR model in Belgium}
+%    \label{tab:optimValsSEIR}
+%\end{table}
+
+
+
 
 \begin{table}[H]
 \FloatBarrier
@@ -375,7 +462,7 @@ As there is no analytical formulation of the solution $I(x(t), \Theta)$, the out
     \multirow{3}{*}{$\alpha$} & 2010 & 0.227\\
     & 2011 & 0.283\\
     & 2012 & 0.126 \\ \hline
-    \multirow{3}{*}{$\tau$} & 2010 & 1.4 \\ 
+    \multirow{3}{*}{$\tau$ (fixed)} & 2010 & 1.4 \\ 
     & 2011 & 1.4\\
     & 2012 & 1.4\\ \hline
     \multirow{3}{*}{$m$} & 2010 & 3.3e-6\\ 
@@ -385,7 +472,7 @@ As there is no analytical formulation of the solution $I(x(t), \Theta)$, the out
     & 2011 & 0.136 \\ 
     & 2012 & 0.31 \\ \hline
     \end{tabular}
-    \caption{Most probable value of the parameters in the SIR model}
+    \caption{Most probable value of the parameters in the SIR model found by fmincunc()}
     \label{tab:sir}
 \end{table}
 
@@ -398,19 +485,17 @@ As there is no analytical formulation of the solution $I(x(t), \Theta)$, the out
     \multirow{3}{*}{$\alpha$} & 2010 & 0.23\\
     & 2011 & 0.289\\
     & 2012 & 0.126 \\ \hline
-    \multirow{3}{*}{$\tau$} & 2010 & 1.4 \\ 
+    \multirow{3}{*}{$\tau$ (fixed) } & 2010 & 1.4 \\ 
     & 2011 & 1.4\\
     & 2012 & 1.4\\ \hline
     \multirow{3}{*}{$S_o$} & 2010 & 0.16 \\ 
     & 2011 & 0.134 \\ 
     & 2012 & 0.312 \\ \hline
     \end{tabular}
-    \caption{Most probable value of the parameters in the SIR model with $m=0$}
+    \caption{Most probable value of the parameters in the SIR model with $m=0$ found by fmincunc()}
     \label{tab:sir0}
 \end{table}
 
-\paragraph{}
-It is noticeable that the parameters don't change between the migatory and the non-migratory model.
 
 \begin{table}[H]
 \FloatBarrier
@@ -437,15 +522,19 @@ It is noticeable that the parameters don't change between the migatory and the n
     & 2011 & 0.006 \\ 
     & 2012 & 0.008 \\ \hline
     \end{tabular}
-    \caption{Most probable value of the parameters in the SEIR model}
+    \caption{Most probable value of the parameters in the SEIR model found by fmincunc()}
     \label{tab:seir}
 \end{table}
 
-\paragraph{}
-Comparing the parameters retrieved by the DRAM method, the parameters found here have always some consistency with a possible physical interpretation.
 
-\paragraph{}
-We were not able to retrieve the Hessian matrix with Matlab.
+
+\section{Conclusion}
+The parameter inference of both the SIR and SEIR models were performed using Delayed Rejection Markov Chain Monte Carlo. Results similar to \cite{coelho2011bayesian} were obtained and show some consistency with a possible physical interpretation. It is noticeable that the parameters don't change between the migratory and the non-migratory model. Even though the parameter uncertainty is rather small, the posterior prediction of the infected rate showed a large uncertainty; the models are very sensitive. Possible improvements could be achieved by using more data or a bigger sample size to reconstruct the posterior.
+
+
+
+
+
 
 
 \bibliographystyle{plain}
