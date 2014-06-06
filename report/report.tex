@@ -141,7 +141,7 @@ We also used uniform priors with lower bound 0 in the SEIR model, however we did
 
 \subsection{Method : Delayed Rejection Markov Chain Monte Carlo}
 \paragraph{}
-To find a good parameter fit, two steps were used : first, $\tau$ was fixed to the value $1.4$ as proposed by \cite{coelho2011bayesian} and the other parameters were optimised using Matlab's fminunc(). Then these values were used as initial values for the MCMC sampling process and the constraint for $\tau$ was released. We discarded 2000 samples for burn-in and used 2000 samples for the reconstruction of the posterior.
+To find a good parameter fit, two steps were used : first, $\tau$ was fixed to the value $1.4$ as proposed by \cite{coelho2011bayesian} and the other parameters were optimised using Matlab's fminsearch(). Then these values were used as initial values for the MCMC sampling process and the constraint for $\tau$ was released. We discarded 2000 samples for burn-in and used 2000 samples for the reconstruction of the posterior.
 
 \subsubsection{Non-zero Migration Rate}
 \paragraph{}
@@ -166,7 +166,7 @@ The parameters found by the DRAM algorithm are given in table \ref{tab:sirDRAM} 
     & 2011 & 0.17968 & 0.079037 & 0.14428 & 0.00022 & 0.015667 \\ 
     & 2012 & 0.53617 & 0.15156 & 0.62491 & 0.00754 & 0.030852 \\ \hline
     \end{tabular}
-    \caption{Optimal parameters found for the SIR model in Belgium. MPV denotes the most probable value (mode) of the posterior distribution. The uncertainty around the MPV was computed via numerical computation 2nd derivative of the posterior.}
+    \caption{Parameters infered for the SIR model in Belgium. MPV denotes the most probable value (mode) of the posterior distribution. The uncertainty around the MPV was computed via numerical computation 2nd derivative of the posterior.}
     \label{tab:sirDRAM}
 %\end{table}
 \end{sidewaystable}
@@ -373,7 +373,7 @@ The spread of uncertainty is modelled by the inverse of the Hessian :
 H(\Theta^*) = \frac{\partial^2 l}{\partial \Theta^2} (\Theta^*) 
 \end{equation}
 
-As there is no analytical formulation of the solution $I(x(t), \Theta)$, we solved the optimisation task using Matlab's fminsearch optimiser, see tables \ref{tab:sir}, \ref{tab:sir0} and \ref{tab:seir}. The numerical computation of the full Hessian failed, indicating a very unstable optimum. This is not surprising, because the ODEs are very sensitive with respect to the parameters and the parameters span different orders of magnitude.
+As there is no analytical formulation of the solution $I(x(t), \Theta)$, we solved the optimisation task using Matlab's fminsearch optimiser, see tables \ref{tab:sir}, \ref{tab:sir0} and \ref{tab:seir}. The numerical computation of the full Hessian failed, indicating a very unstable optimum. This is not surprising, because the ODEs are very sensitive with respect to the parameters and the parameters span several orders of magnitude.
 
 
 %\begin{table}[H]
