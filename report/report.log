@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.2.19)  3 JUN 2014 10:07
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2014.2.19)  6 JUN 2014 21:24
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -208,118 +208,523 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 )))
-(./report.aux)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/multirow/multirow.sty
+\bigstrutjot=\dimen121
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/placeins/placeins.sty
+Package: placeins 2005/04/18  v 2.2
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/rotating/rotating.sty
+Package: rotating 2009/03/28 v2.16a rotated objects in LaTeX
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\c@r@tfl@t=\count103
+\rotFPtop=\skip46
+\rotFPbot=\skip47
+\rot@float@box=\box28
+\rot@mess@toks=\toks20
+) (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
 
 (/usr/local/texlive/2013/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count103
-\scratchdimen=\dimen121
-\scratchbox=\box28
-\nofMPsegments=\count104
-\nofMParguments=\count105
-\everyMPshowfont=\toks20
-\MPscratchCnt=\count106
-\MPscratchDim=\dimen122
-\MPnumerator=\count107
-\makeMPintoPDFobject=\count108
-\everyMPtoPDFconversion=\toks21
+\scratchcounter=\count104
+\scratchdimen=\dimen122
+\scratchbox=\box29
+\nofMPsegments=\count105
+\nofMParguments=\count106
+\everyMPshowfont=\toks21
+\MPscratchCnt=\count107
+\MPscratchDim=\dimen123
+\MPnumerator=\count108
+\makeMPintoPDFobject=\count109
+\everyMPtoPDFconversion=\toks22
 )
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: rotating package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Try loading font information for U+msa on input line 17.
+LaTeX Font Info:    Try loading font information for U+msa on input line 22.
  (/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 17.
+LaTeX Font Info:    Try loading font information for U+msb on input line 22.
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
+<figures/picture1.png, id=1, 511.9125pt x 105.39375pt>
+File: figures/picture1.png Graphic file (type png)
 
-LaTeX Warning: Citation `coelho2011bayesian' on page 1 undefined on input line 
-23.
-
-<picture1.png, id=1, 511.9125pt x 105.39375pt>
-File: picture1.png Graphic file (type png)
- <use picture1.png>
-Package pdftex.def Info: picture1.png used on input line 41.
+<use figures/picture1.png>
+Package pdftex.def Info: figures/picture1.png used on input line 48.
 (pdftex.def)             Requested size: 360.0pt x 74.11765pt.
  [1
 
-{/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./pictu
-re1.png>]
-<picture2.png, id=14, 383.93437pt x 80.55093pt>
-File: picture2.png Graphic file (type png)
- <use picture2.png>
-Package pdftex.def Info: picture2.png used on input line 73.
+{/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./figur
+es/picture1.png>]
+<figures/picture2.png, id=13, 383.93437pt x 80.55093pt>
+File: figures/picture2.png Graphic file (type png)
+
+<use figures/picture2.png>
+Package pdftex.def Info: figures/picture2.png used on input line 81.
 (pdftex.def)             Requested size: 360.0pt x 75.53474pt.
 
+Overfull \hbox (2.90007pt too wide) in paragraph at lines 88--89
+[]\OT1/cmr/m/n/10.95 The set of pa-ram-e-ters to be de-ter-mined in this model 
+is : $[]$. 
+ []
 
-LaTeX Warning: Citation `baumgartner2012seasonality' on page 2 undefined on inp
-ut line 84.
+Package epstopdf Info: Source file: <figures/FluData.eps>
+(epstopdf)                    date: 2014-05-27 20:49:59
+(epstopdf)                    size: 12231 bytes
+(epstopdf)             Output file: <figures/FluData-eps-converted-to.pdf>
+(epstopdf)                    date: 2014-06-06 17:37:13
+(epstopdf)                    size: 8379 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/FluData-eps-conver
+ted-to.pdf figures/FluData.eps>
+(epstopdf)             \includegraphics on input line 97.
+Package epstopdf Info: Output file is already uptodate.
+<figures/FluData-eps-converted-to.pdf, id=14, 561.09625pt x 421.575pt>
+File: figures/FluData-eps-converted-to.pdf Graphic file (type pdf)
 
-[2 <./picture2.png>]
+<use figures/FluData-eps-converted-to.pdf>
+Package pdftex.def Info: figures/FluData-eps-converted-to.pdf used on input lin
+e 97.
+(pdftex.def)             Requested size: 360.0pt x 270.4825pt.
 
-LaTeX Warning: Citation `coelho2011bayesian' on page 3 undefined on input line 
-106.
 
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-LaTeX Warning: Citation `coelho2011bayesian' on page 3 undefined on input line 
-106.
+[2 <./figures/picture2.png>] [3 <./figures/FluData-eps-converted-to.pdf>]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 126.
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 110.
 
 (/usr/local/texlive/2013/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 110.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 126.
+Package epstopdf Info: Source file: <figures/SIR_posterior_season1.eps>
+(epstopdf)                    date: 2014-06-03 15:28:54
+(epstopdf)                    size: 12513 bytes
+(epstopdf)             Output file: <figures/SIR_posterior_season1-eps-converte
+d-to.pdf>
+(epstopdf)                    date: 2014-06-06 21:13:17
+(epstopdf)                    size: 8839 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/SIR_posterior_seas
+on1-eps-converted-to.pdf figures/SIR_posterior_season1.eps>
+(epstopdf)             \includegraphics on input line 180.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/SIR_posterior_season1-eps-converted-to.pdf, id=32, 561.09625pt x 421.5
+75pt>
+File: figures/SIR_posterior_season1-eps-converted-to.pdf Graphic file (type pdf
+)
+ <use figures/SIR_posterior_season1-eps-converted-to.pdf>
+Package pdftex.def Info: figures/SIR_posterior_season1-eps-converted-to.pdf use
+d on input line 180.
+(pdftex.def)             Requested size: 198.24449pt x 148.95006pt.
+Package epstopdf Info: Source file: <figures/SIR_posterior_season2.eps>
+(epstopdf)                    date: 2014-05-27 23:00:12
+(epstopdf)                    size: 12682 bytes
+(epstopdf)             Output file: <figures/SIR_posterior_season2-eps-converte
+d-to.pdf>
+(epstopdf)                    date: 2014-06-06 21:13:18
+(epstopdf)                    size: 8868 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/SIR_posterior_seas
+on2-eps-converted-to.pdf figures/SIR_posterior_season2.eps>
+(epstopdf)             \includegraphics on input line 183.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/SIR_posterior_season2-eps-converted-to.pdf, id=33, 561.09625pt x 421.5
+75pt>
+File: figures/SIR_posterior_season2-eps-converted-to.pdf Graphic file (type pdf
+)
+ <use figures/SIR_posterior_season2-eps-converted-to.pdf>
+Package pdftex.def Info: figures/SIR_posterior_season2-eps-converted-to.pdf use
+d on input line 183.
+(pdftex.def)             Requested size: 198.24449pt x 148.95006pt.
+Package epstopdf Info: Source file: <figures/SIR_posterior_season3.eps>
+(epstopdf)                    date: 2014-05-27 19:26:11
+(epstopdf)                    size: 12566 bytes
+(epstopdf)             Output file: <figures/SIR_posterior_season3-eps-converte
+d-to.pdf>
+(epstopdf)                    date: 2014-06-06 21:13:19
+(epstopdf)                    size: 8892 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/SIR_posterior_seas
+on3-eps-converted-to.pdf figures/SIR_posterior_season3.eps>
+(epstopdf)             \includegraphics on input line 186.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/SIR_posterior_season3-eps-converted-to.pdf, id=34, 561.09625pt x 421.5
+75pt>
+File: figures/SIR_posterior_season3-eps-converted-to.pdf Graphic file (type pdf
+)
+ <use figures/SIR_posterior_season3-eps-converted-to.pdf>
+Package pdftex.def Info: figures/SIR_posterior_season3-eps-converted-to.pdf use
+d on input line 186.
+(pdftex.def)             Requested size: 198.24449pt x 148.95006pt.
+ [4]
+Package epstopdf Info: Source file: <figures/SIR_prediction_season1.eps>
+(epstopdf)                    date: 2014-05-27 18:57:03
+(epstopdf)                    size: 10981 bytes
+(epstopdf)             Output file: <figures/SIR_prediction_season1-eps-convert
+ed-to.pdf>
+(epstopdf)                    date: 2014-06-06 21:13:21
+(epstopdf)                    size: 8990 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/SIR_prediction_sea
+son1-eps-converted-to.pdf figures/SIR_prediction_season1.eps>
+(epstopdf)             \includegraphics on input line 198.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/SIR_prediction_season1-eps-converted-to.pdf, id=39, 561.09625pt x 421.
+575pt>
+File: figures/SIR_prediction_season1-eps-converted-to.pdf Graphic file (type pd
+f)
+ <use figures/SIR_prediction_season1-eps-converted-to.pdf>
+Package pdftex.def Info: figures/SIR_prediction_season1-eps-converted-to.pdf us
+ed on input line 198.
+(pdftex.def)             Requested size: 198.24449pt x 148.95006pt.
+
+<figures/SIR_prediction_season2.pdf, id=40, 549.92513pt x 445.5055pt>
+File: figures/SIR_prediction_season2.pdf Graphic file (type pdf)
+
+<use figures/SIR_prediction_season2.pdf>
+Package pdftex.def Info: figures/SIR_prediction_season2.pdf used on input line 
+201.
+(pdftex.def)             Requested size: 183.85893pt x 148.95006pt.
+Package epstopdf Info: Source file: <figures/SIR_prediction_season3.eps>
+(epstopdf)                    date: 2014-05-27 19:29:00
+(epstopdf)                    size: 10601 bytes
+(epstopdf)             Output file: <figures/SIR_prediction_season3-eps-convert
+ed-to.pdf>
+(epstopdf)                    date: 2014-06-06 21:13:22
+(epstopdf)                    size: 8837 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/SIR_prediction_sea
+son3-eps-converted-to.pdf figures/SIR_prediction_season3.eps>
+(epstopdf)             \includegraphics on input line 204.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/SIR_prediction_season3-eps-converted-to.pdf, id=41, 561.09625pt x 421.
+575pt>
+File: figures/SIR_prediction_season3-eps-converted-to.pdf Graphic file (type pd
+f)
+ <use figures/SIR_prediction_season3-eps-converted-to.pdf>
+Package pdftex.def Info: figures/SIR_prediction_season3-eps-converted-to.pdf us
+ed on input line 204.
+(pdftex.def)             Requested size: 198.24449pt x 148.95006pt.
 
 
-LaTeX Warning: Citation `coelho2011bayesian' on page 3 undefined on input line 
-121.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-[3]
+Package epstopdf Info: Source file: <figures/SEIR_posterior_season1.eps>
+(epstopdf)                    date: 2014-06-03 11:17:24
+(epstopdf)                    size: 15072 bytes
+(epstopdf)             Output file: <figures/SEIR_posterior_season1-eps-convert
+ed-to.pdf>
+(epstopdf)                    date: 2014-06-06 21:13:24
+(epstopdf)                    size: 10230 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/SEIR_posterior_sea
+son1-eps-converted-to.pdf figures/SEIR_posterior_season1.eps>
+(epstopdf)             \includegraphics on input line 245.
+Package epstopdf Info: Output file is already uptodate.
 
-LaTeX Warning: Reference `tab:sirDRAM' on page 4 undefined on input line 123.
+<figures/SEIR_posterior_season1-eps-converted-to.pdf, id=42, 561.09625pt x 421.
+575pt>
+File: figures/SEIR_posterior_season1-eps-converted-to.pdf Graphic file (type pd
+f)
+ <use figures/SEIR_posterior_season1-eps-converted-to.pdf>
+Package pdftex.def Info: figures/SEIR_posterior_season1-eps-converted-to.pdf us
+ed on input line 245.
+(pdftex.def)             Requested size: 198.24449pt x 148.95006pt.
+Package epstopdf Info: Source file: <figures/SEIR_posterior_season2.eps>
+(epstopdf)                    date: 2014-06-03 15:13:21
+(epstopdf)                    size: 15022 bytes
+(epstopdf)             Output file: <figures/SEIR_posterior_season2-eps-convert
+ed-to.pdf>
+(epstopdf)                    date: 2014-06-06 21:13:25
+(epstopdf)                    size: 10099 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/SEIR_posterior_sea
+son2-eps-converted-to.pdf figures/SEIR_posterior_season2.eps>
+(epstopdf)             \includegraphics on input line 248.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/SEIR_posterior_season2-eps-converted-to.pdf, id=43, 561.09625pt x 421.
+575pt>
+File: figures/SEIR_posterior_season2-eps-converted-to.pdf Graphic file (type pd
+f)
+ <use figures/SEIR_posterior_season2-eps-converted-to.pdf>
+Package pdftex.def Info: figures/SEIR_posterior_season2-eps-converted-to.pdf us
+ed on input line 248.
+(pdftex.def)             Requested size: 198.24449pt x 148.95006pt.
+Package epstopdf Info: Source file: <figures/SEIR_posterior_season3.eps>
+(epstopdf)                    date: 2014-06-03 11:46:36
+(epstopdf)                    size: 15251 bytes
+(epstopdf)             Output file: <figures/SEIR_posterior_season3-eps-convert
+ed-to.pdf>
+(epstopdf)                    date: 2014-06-06 21:13:26
+(epstopdf)                    size: 10511 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/SEIR_posterior_sea
+son3-eps-converted-to.pdf figures/SEIR_posterior_season3.eps>
+(epstopdf)             \includegraphics on input line 251.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/SEIR_posterior_season3-eps-converted-to.pdf, id=44, 561.09625pt x 421.
+575pt>
+File: figures/SEIR_posterior_season3-eps-converted-to.pdf Graphic file (type pd
+f)
+ <use figures/SEIR_posterior_season3-eps-converted-to.pdf>
+Package pdftex.def Info: figures/SEIR_posterior_season3-eps-converted-to.pdf us
+ed on input line 251.
+(pdftex.def)             Requested size: 198.24449pt x 148.95006pt.
+Package epstopdf Info: Source file: <figures/SEIR_prediction_season1.eps>
+(epstopdf)                    date: 2014-06-03 11:34:20
+(epstopdf)                    size: 10988 bytes
+(epstopdf)             Output file: <figures/SEIR_prediction_season1-eps-conver
+ted-to.pdf>
+(epstopdf)                    date: 2014-06-06 21:13:27
+(epstopdf)                    size: 9032 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/SEIR_prediction_se
+ason1-eps-converted-to.pdf figures/SEIR_prediction_season1.eps>
+(epstopdf)             \includegraphics on input line 272.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/SEIR_prediction_season1-eps-converted-to.pdf, id=45, 561.09625pt x 421
+.575pt>
+File: figures/SEIR_prediction_season1-eps-converted-to.pdf Graphic file (type p
+df)
+ <use figures/SEIR_prediction_season1-eps-converted-to.pdf>
+Package pdftex.def Info: figures/SEIR_prediction_season1-eps-converted-to.pdf u
+sed on input line 272.
+(pdftex.def)             Requested size: 198.24449pt x 148.95006pt.
+Package epstopdf Info: Source file: <figures/SEIR_prediction_season2.eps>
+(epstopdf)                    date: 2014-06-03 15:13:21
+(epstopdf)                    size: 10645 bytes
+(epstopdf)             Output file: <figures/SEIR_prediction_season2-eps-conver
+ted-to.pdf>
+(epstopdf)                    date: 2014-06-06 21:13:29
+(epstopdf)                    size: 8743 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/SEIR_prediction_se
+ason2-eps-converted-to.pdf figures/SEIR_prediction_season2.eps>
+(epstopdf)             \includegraphics on input line 275.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/SEIR_prediction_season2-eps-converted-to.pdf, id=46, 561.09625pt x 421
+.575pt>
+File: figures/SEIR_prediction_season2-eps-converted-to.pdf Graphic file (type p
+df)
+ <use figures/SEIR_prediction_season2-eps-converted-to.pdf>
+Package pdftex.def Info: figures/SEIR_prediction_season2-eps-converted-to.pdf u
+sed on input line 275.
+(pdftex.def)             Requested size: 198.24449pt x 148.95006pt.
+
+<figures/SEIR_prediction_season3.pdf, id=47, 542.77266pt x 437.20398pt>
+File: figures/SEIR_prediction_season3.pdf Graphic file (type pdf)
+
+<use figures/SEIR_prediction_season3.pdf>
+Package pdftex.def Info: figures/SEIR_prediction_season3.pdf used on input line
+ 278.
+(pdftex.def)             Requested size: 184.92123pt x 148.95006pt.
 
 
-LaTeX Warning: Reference `tab:seirDRAM' on page 4 undefined on input line 123.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-./report.tex:129: Extra alignment tab has been changed to \cr.
-<recently read> \endtemplate 
-                             
-l.129     Parameter & Season & Optimal Value &
-                                                Standard Deviation\\ \hline
-? 
-./report.tex:129: Emergency stop.
-<recently read> \endtemplate 
-                             
-l.129     Parameter & Season & Optimal Value &
-                                                Standard Deviation\\ \hline
-End of file on the terminal!
 
- 
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+Package epstopdf Info: Source file: <figures/SIR_posterior_season1_m=0.eps>
+(epstopdf)                    date: 2014-05-27 21:37:57
+(epstopdf)                    size: 10942 bytes
+(epstopdf)             Output file: <figures/SIR_posterior_season1_m=0-eps-conv
+erted-to.pdf>
+(epstopdf)                    date: 2014-06-06 21:13:30
+(epstopdf)                    size: 7562 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/SIR_posterior_seas
+on1_m=0-eps-converted-to.pdf figures/SIR_posterior_season1_m=0.eps>
+(epstopdf)             \includegraphics on input line 317.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/SIR_posterior_season1_m=0-eps-converted-to.pdf, id=48, 561.09625pt x 4
+21.575pt>
+File: figures/SIR_posterior_season1_m=0-eps-converted-to.pdf Graphic file (type
+ pdf)
+ <use figures/SIR_posterior_season1_m=0-eps-converted-to.pdf>
+Package pdftex.def Info: figures/SIR_posterior_season1_m=0-eps-converted-to.pdf
+ used on input line 317.
+(pdftex.def)             Requested size: 198.24449pt x 148.95006pt.
+Package epstopdf Info: Source file: <figures/SIR_posterior_season2_m=0.eps>
+(epstopdf)                    date: 2014-05-27 21:50:18
+(epstopdf)                    size: 11037 bytes
+(epstopdf)             Output file: <figures/SIR_posterior_season2_m=0-eps-conv
+erted-to.pdf>
+(epstopdf)                    date: 2014-06-06 21:13:31
+(epstopdf)                    size: 7826 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/SIR_posterior_seas
+on2_m=0-eps-converted-to.pdf figures/SIR_posterior_season2_m=0.eps>
+(epstopdf)             \includegraphics on input line 320.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/SIR_posterior_season2_m=0-eps-converted-to.pdf, id=49, 561.09625pt x 4
+21.575pt>
+File: figures/SIR_posterior_season2_m=0-eps-converted-to.pdf Graphic file (type
+ pdf)
+ <use figures/SIR_posterior_season2_m=0-eps-converted-to.pdf>
+Package pdftex.def Info: figures/SIR_posterior_season2_m=0-eps-converted-to.pdf
+ used on input line 320.
+(pdftex.def)             Requested size: 198.24449pt x 148.95006pt.
+Package epstopdf Info: Source file: <figures/SIR_posterior_season3_m=0.eps>
+(epstopdf)                    date: 2014-05-27 22:44:58
+(epstopdf)                    size: 10996 bytes
+(epstopdf)             Output file: <figures/SIR_posterior_season3_m=0-eps-conv
+erted-to.pdf>
+(epstopdf)                    date: 2014-06-06 21:13:32
+(epstopdf)                    size: 7848 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/SIR_posterior_seas
+on3_m=0-eps-converted-to.pdf figures/SIR_posterior_season3_m=0.eps>
+(epstopdf)             \includegraphics on input line 323.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/SIR_posterior_season3_m=0-eps-converted-to.pdf, id=50, 561.09625pt x 4
+21.575pt>
+File: figures/SIR_posterior_season3_m=0-eps-converted-to.pdf Graphic file (type
+ pdf)
+ <use figures/SIR_posterior_season3_m=0-eps-converted-to.pdf>
+Package pdftex.def Info: figures/SIR_posterior_season3_m=0-eps-converted-to.pdf
+ used on input line 323.
+(pdftex.def)             Requested size: 198.24449pt x 148.95006pt.
+ [5]
+Package epstopdf Info: Source file: <figures/SIR_prediction_season1_m=0.eps>
+(epstopdf)                    date: 2014-05-27 21:35:22
+(epstopdf)                    size: 10990 bytes
+(epstopdf)             Output file: <figures/SIR_prediction_season1_m=0-eps-con
+verted-to.pdf>
+(epstopdf)                    date: 2014-06-06 21:13:34
+(epstopdf)                    size: 9037 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/SIR_prediction_sea
+son1_m=0-eps-converted-to.pdf figures/SIR_prediction_season1_m=0.eps>
+(epstopdf)             \includegraphics on input line 335.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/SIR_prediction_season1_m=0-eps-converted-to.pdf, id=54, 561.09625pt x 
+421.575pt>
+File: figures/SIR_prediction_season1_m=0-eps-converted-to.pdf Graphic file (typ
+e pdf)
+ <use figures/SIR_prediction_season1_m=0-eps-converted-to.pdf>
+Package pdftex.def Info: figures/SIR_prediction_season1_m=0-eps-converted-to.pd
+f used on input line 335.
+(pdftex.def)             Requested size: 198.24449pt x 148.95006pt.
+Package epstopdf Info: Source file: <figures/SIR_prediction_season2_m=0.eps>
+(epstopdf)                    date: 2014-05-27 23:06:15
+(epstopdf)                    size: 10862 bytes
+(epstopdf)             Output file: <figures/SIR_prediction_season2_m=0-eps-con
+verted-to.pdf>
+(epstopdf)                    date: 2014-06-06 21:13:35
+(epstopdf)                    size: 9011 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/SIR_prediction_sea
+son2_m=0-eps-converted-to.pdf figures/SIR_prediction_season2_m=0.eps>
+(epstopdf)             \includegraphics on input line 338.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/SIR_prediction_season2_m=0-eps-converted-to.pdf, id=55, 561.09625pt x 
+421.575pt>
+File: figures/SIR_prediction_season2_m=0-eps-converted-to.pdf Graphic file (typ
+e pdf)
+ <use figures/SIR_prediction_season2_m=0-eps-converted-to.pdf>
+Package pdftex.def Info: figures/SIR_prediction_season2_m=0-eps-converted-to.pd
+f used on input line 338.
+(pdftex.def)             Requested size: 198.24449pt x 148.95006pt.
+
+<figures/SIR_prediction_season3_m=0.pdf, id=56, 540.49396pt x 442.97125pt>
+File: figures/SIR_prediction_season3_m=0.pdf Graphic file (type pdf)
+
+<use figures/SIR_prediction_season3_m=0.pdf>
+Package pdftex.def Info: figures/SIR_prediction_season3_m=0.pdf used on input l
+ine 341.
+(pdftex.def)             Requested size: 181.73668pt x 148.95006pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[6] (./report.bbl
+Underfull \hbox (badness 1668) in paragraph at lines 4--10
+[]\OT1/cmr/m/n/10.95 Eduardo Azziz Baum-gart-ner, Chris-tine N Dao, Shar-ifa Na
+s-reen,
+ []
+
+) [7] [8] [9
+
+ <./figures/SIR_posterior_season1-eps-converted-to.pdf> <./figures/SIR_posterio
+r_season2-eps-converted-to.pdf> <./figures/SIR_posterior_season3-eps-converted-
+to.pdf>] [10
+
+ <./figures/SIR_prediction_season1-eps-converted-to.pdf> <./figures/SIR_predict
+ion_season2.pdf> <./figures/SIR_prediction_season3-eps-converted-to.pdf>] [11
+
+
+] [12
+
+ <./figures/SEIR_posterior_season1-eps-converted-to.pdf> <./figures/SEIR_poster
+ior_season2-eps-converted-to.pdf> <./figures/SEIR_posterior_season3-eps-convert
+ed-to.pdf>] [13
+
+ <./figures/SEIR_prediction_season1-eps-converted-to.pdf> <./figures/SEIR_predi
+ction_season2-eps-converted-to.pdf> <./figures/SEIR_prediction_season3.pdf>] [1
+4
+
+ <./figures/SIR_posterior_season1_m=0-eps-converted-to.pdf> <./figures/SIR_post
+erior_season2_m=0-eps-converted-to.pdf> <./figures/SIR_posterior_season3_m=0-ep
+s-converted-to.pdf>] [15
+
+ <./figures/SIR_prediction_season1_m=0-eps-converted-to.pdf> <./figures/SIR_pre
+diction_season2_m=0-eps-converted-to.pdf> <./figures/SIR_prediction_season3_m=0
+.pdf>]
+[16
+
+
+] [17
+
+] (./report.aux) ) 
 Here is how much of TeX's memory you used:
- 3563 strings out of 493315
- 52914 string characters out of 6137904
- 115169 words of memory out of 5000000
- 6969 multiletter control sequences out of 15000+600000
- 11352 words of font info for 43 fonts, out of 8000000 for 9000
+ 3830 strings out of 493315
+ 60050 string characters out of 6137904
+ 152477 words of memory out of 5000000
+ 7194 multiletter control sequences out of 15000+600000
+ 11698 words of font info for 44 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 42i,8n,38p,535b,301s stack positions out of 5000i,500n,10000p,200000b,80000s
-./report.tex:129:  ==> Fatal error occurred, no output PDF file produced!
+ 42i,13n,38p,693b,351s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmbx10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmbx12.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmex10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmmi10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmmi6.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmmi8.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
+2.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.
+pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb
+></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></
+usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></u
+sr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr
+/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on report.pdf (17 pages, 398535 bytes).
+PDF statistics:
+ 317 PDF objects out of 1000 (max. 8388607)
+ 223 compressed objects within 3 object streams
+ 0 named destinations out of 1000 (max. 500000)
+ 106 words of extra memory for PDF output out of 10000 (max. 10000000)
+

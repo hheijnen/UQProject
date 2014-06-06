@@ -85,7 +85,7 @@ where $E$ is the normalized number of exposed individuals and $\gamma$ is the tr
 
 $\beta$ has the same behavior in this model and in the SIR model (Section \ref{sec:SIR}).
 
-The set of parameters to be determined in this model is : $ { \alpha, \gamma, \tau, m, S_o}$. 
+The set of parameters to be determined in this model is : $ { \alpha, \gamma, \tau, m, S_0, E_0}$. 
 
 \subsection{Data}
 \paragraph{}
@@ -133,8 +133,7 @@ Here are the priors used for each parameter :
 In both the SIR and SEIR model, the initial value $I_0$ was chosen to fit the first data point. This determines the value $R_0$ for the SIR model; whereas in the SEIR model an additional parameter $E_0$ has to be infered.
 
 \paragraph{}
-We also used uniform priors with lower bound 0 in the SEIR model, however we did not choose any upper bound to allow for more freedom.
-
+We also used uniform priors with lower bound 0 in the SEIR model, however we did not choose any upper bound since we do not want restrict the parameter space unnecessarily.
 %\paragraph{}
 %Moreover, before computing the Markov Chain Monte Carlo, the initial values of each parameter were optimized. The method used for this prior optimization was a minimum search.
 
@@ -199,7 +198,7 @@ The following figures \ref{fig:sir_pred1}, \ref{fig:sir_pred2}, \ref{fig:sir_pre
     \includegraphics[height = 0.25\textheight]{figures/SIR_prediction_season1.eps}
     \caption{SIR Model : Prediction of the SIR Model compared to the Data for Season 2010}
     \label{fig:sir_pred1}
-    \includegraphics[height = 0.25\textheight]{figures/SIR_prediction_season2.eps}
+    \includegraphics[height = 0.25\textheight]{figures/SIR_prediction_season2.pdf}
     \caption{SIR Model : Prediction of the SIR Model compared to the Data for Season 2011}
     \label{fig:sir_pred2}
     \includegraphics[height = 0.25\textheight]{figures/SIR_prediction_season3.eps}
@@ -339,7 +338,7 @@ The following figures \ref{fig:sir0_pred1}, \ref{fig:sir0_pred2}, \ref{fig:sir0_
     \includegraphics[height = 0.25\textheight]{figures/SIR_prediction_season2_m=0.eps}
     \caption{SIR Model : Prediction of the SIR Model compared to the Data for Season 2011 with m=0}
     \label{fig:sir0_pred2}
-    \includegraphics[height = 0.25\textheight]{figures/SIR_prediction_season3_m=0.eps}
+    \includegraphics[height = 0.25\textheight]{figures/SIR_prediction_season3_m=0.pdf}
     \caption{SIR Model : Prediction of the SIR Model compared to the Data for Season 2012 with m=0}
     \label{fig:sir0_pred3}
 \end{figure}
@@ -374,7 +373,7 @@ The spread of uncertainty is modelled by the inverse of the Hessian :
 H(\Theta^*) = \frac{\partial^2 l}{\partial \Theta^2} (\Theta^*) 
 \end{equation}
 
-As there is no analytical formulation of the solution $I(x(t), \Theta)$, we solved the optimisation task using Matlab's fminunc solver, see tables \ref{tab:sir}, \ref{tab:sir0} and \ref{tab:seir}. The numerical computation of the full Hessian failed, indicating a very unstable optimum. This is not surprising, because the ODEs are very sensitive with respect to the parameters and the parameters span different orders of magnitude.
+As there is no analytical formulation of the solution $I(x(t), \Theta)$, we solved the optimisation task using Matlab's fminsearch optimiser, see tables \ref{tab:sir}, \ref{tab:sir0} and \ref{tab:seir}. The numerical computation of the full Hessian failed, indicating a very unstable optimum. This is not surprising, because the ODEs are very sensitive with respect to the parameters and the parameters span different orders of magnitude.
 
 
 %\begin{table}[H]
@@ -472,7 +471,7 @@ As there is no analytical formulation of the solution $I(x(t), \Theta)$, we solv
     & 2011 & 0.136 \\ 
     & 2012 & 0.31 \\ \hline
     \end{tabular}
-    \caption{Most probable value of the parameters in the SIR model found by fmincunc()}
+    \caption{Most probable value of the parameters in the SIR model found by fminsearch()}
     \label{tab:sir}
 \end{table}
 
@@ -492,7 +491,7 @@ As there is no analytical formulation of the solution $I(x(t), \Theta)$, we solv
     & 2011 & 0.134 \\ 
     & 2012 & 0.312 \\ \hline
     \end{tabular}
-    \caption{Most probable value of the parameters in the SIR model with $m=0$ found by fmincunc()}
+    \caption{Most probable value of the parameters in the SIR model with $m=0$ found by fminsearch()}
     \label{tab:sir0}
 \end{table}
 
@@ -522,7 +521,7 @@ As there is no analytical formulation of the solution $I(x(t), \Theta)$, we solv
     & 2011 & 0.006 \\ 
     & 2012 & 0.008 \\ \hline
     \end{tabular}
-    \caption{Most probable value of the parameters in the SEIR model found by fmincunc()}
+    \caption{Most probable value of the parameters in the SEIR model found by fminsearch()}
     \label{tab:seir}
 \end{table}
 
