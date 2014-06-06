@@ -276,7 +276,7 @@ When we compare the different parameters from one flu season to another in the s
 \subsubsection{Zero Migration Rate}
 \paragraph{}
 In Belgium for a zero migration rate, the parameters found by the DRAM algorithm are given in table \ref{tab:sirm0DRAM} for the SIR model
-\begin{table}[H]
+\begin{table}[h]
 \FloatBarrier
 \centering
 \begin{tabular}{| c | c | c | c | c |}
@@ -364,10 +364,88 @@ The spread of uncertainty is modelled by the Hessian :
 H(\Theta^*) = \frac{\partial^2 l}{\partial \Theta^2} (\Theta^*) 
 \end{equation}
 
-As there is no analytical formulation of the solution $I(x(t), \Theta)$, we use Matlab to solve this.
+As there is no analytical formulation of the solution $I(x(t), \Theta)$, the output given by Matlab is in tables \ref{tab:sir}, \ref{tab:sir0} and \ref{tab:seir}. Moreover, the same formulation can be used for both models. Moreover, $\tau$ is considered as fixed to the value $1.4$ here.
 
+\begin{table}[H]
+\FloatBarrier
+\centering
+\begin{tabular}{| c | c | c |}
+    \hline
+    Parameter & Season & Optimal Value \\ \hline
+    \multirow{3}{*}{$\alpha$} & 2010 & 0.227\\
+    & 2011 & 0.283\\
+    & 2012 & 0.126 \\ \hline
+    \multirow{3}{*}{$\tau$} & 2010 & 1.4 \\ 
+    & 2011 & 1.4\\
+    & 2012 & 1.4\\ \hline
+    \multirow{3}{*}{$m$} & 2010 & 3.3e-6\\ 
+    & 2011 & 4.1e-6 \\
+    & 2012 & 2.6e-6 \\ \hline
+    \multirow{3}{*}{$S_o$} & 2010 & 0.162 \\ 
+    & 2011 & 0.136 \\ 
+    & 2012 & 0.31 \\ \hline
+    \end{tabular}
+    \caption{Most probable value of the parameters in the SIR model}
+    \label{tab:sir}
+\end{table}
 
+\begin{table}[H]
+\FloatBarrier
+\centering
+\begin{tabular}{| c | c | c |}
+    \hline
+    Parameter & Season & Optimal Value \\ \hline
+    \multirow{3}{*}{$\alpha$} & 2010 & 0.23\\
+    & 2011 & 0.289\\
+    & 2012 & 0.126 \\ \hline
+    \multirow{3}{*}{$\tau$} & 2010 & 1.4 \\ 
+    & 2011 & 1.4\\
+    & 2012 & 1.4\\ \hline
+    \multirow{3}{*}{$S_o$} & 2010 & 0.16 \\ 
+    & 2011 & 0.134 \\ 
+    & 2012 & 0.312 \\ \hline
+    \end{tabular}
+    \caption{Most probable value of the parameters in the SIR model with $m=0$}
+    \label{tab:sir0}
+\end{table}
 
+\paragraph{}
+It is noticeable that the parameters don't change between the migatory and the non-migratory model.
+
+\begin{table}[H]
+\FloatBarrier
+\centering
+\begin{tabular}{| c | c | c |}
+    \hline
+    Parameter & Season & Optimal Value \\ \hline
+    \multirow{3}{*}{$\alpha$} & 2010 & 0.311\\
+    & 2011 & 0.839\\
+    & 2012 & 0.352 \\ \hline
+    \multirow{3}{*}{$\tau$} & 2010 & 1.858 \\ 
+    & 2011 & 3.524\\
+    & 2012 & 2.174\\ \hline
+    \multirow{3}{*}{$\gamma$} & 2010 & 2.303 \\ 
+    & 2011 & 0.584\\
+    & 2012 & 0.702\\ \hline
+    \multirow{3}{*}{$m$} & 2010 & 2.2e-6\\ 
+    & 2011 & 2.1e-6 \\
+    & 2012 & 2.4e-6 \\ \hline
+    \multirow{3}{*}{$S_o$} & 2010 & 0.171 \\ 
+    & 2011 & 0.112 \\ 
+    & 2012 & 0.287 \\ \hline
+    \multirow{3}{*}{$E_o$} & 2010 & 0.001 \\ 
+    & 2011 & 0.006 \\ 
+    & 2012 & 0.008 \\ \hline
+    \end{tabular}
+    \caption{Most probable value of the parameters in the SEIR model}
+    \label{tab:seir}
+\end{table}
+
+\paragraph{}
+Comparing the parameters retrieved by the DRAM method, the parameters found here have always some consistency with a possible physical interpretation.
+
+\paragraph{}
+We were not able to retrieve the Hessian matrix with Matlab.
 
 
 \bibliographystyle{plain}
